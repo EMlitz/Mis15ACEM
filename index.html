@@ -1,397 +1,952 @@
-<!DOCTYPE html>
+¿<!DOCTYPE html>
+
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Mis XV - Ana Cristina Enriquez More</title>
+<title>Mis XV Años | Ana Cristina Enriquez More</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Great+Vibes&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: #110b2e;
+    color: white;
+    font-family: Georgia, serif;
+    overflow-x: hidden;
+}
+
+button, a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+button {
+    font-family: inherit;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* FONDO MÁGICO */
+
+#estrellas,
+#faroles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+#estrellas {
+    z-index: 0;
+}
+
+#faroles {
+    z-index: 2;
+}
+
+.estrella {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    animation: parpadeo 3s infinite ease-in-out;
+}
+
+@keyframes parpadeo {
+    0%, 100% {
+        opacity: .2;
+        transform: scale(.7);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.3);
+    }
+}
+
+/* FAROLES */
+
+.farol {
+    position: absolute;
+    bottom: -150px;
+    font-size: 45px;
+    animation: flotar 18s linear infinite;
+    filter: drop-shadow(0 0 15px #ffcc70);
+}
+
+@keyframes flotar {
+    0% {
+        transform: translateY(0) translateX(0) rotate(-5deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-55vh) translateX(40px) rotate(5deg);
+    }
+    100% {
+        transform: translateY(-120vh) translateX(-30px) rotate(-5deg);
+        opacity: 0;
+    }
+}
+
+/* SECCIONES */
+
+.seccion {
+    position: relative;
+    z-index: 3;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 70px 20px;
+}
+
+.hero {
+    background:
+        radial-gradient(ellipse at center, rgba(96,58,160,.45), transparent 65%),
+        linear-gradient(#10092d, #29124f 65%, #110b2e);
+}
+
+.hero:after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(transparent 65%, #110b2e);
+    pointer-events: none;
+}
+
+.contenido {
+    position: relative;
+    z-index: 4;
+    max-width: 850px;
+}
+
+.centro {
+    text-align: center;
+}
+
+h1, h2, h3 {
+    font-family: Cinzel, Georgia, serif;
+}
+
+h1 {
+    font-size: clamp(35px, 7vw, 80px);
+    color: #ffe6a3;
+    margin: 10px 0;
+    animation: aparecer 2s ease forwards;
+}
+
+h2 {
+    font-size: clamp(28px, 5vw, 52px);
+    color: #ffe3a0;
+}
+
+h3 {
+    font-size: 22px;
+    color: #f5dca1;
+}
+
+p {
+    font-size: 19px;
+    line-height: 1.8;
+}
+
+.dorado {
+    color: #f6d88b;
+}
+
+.lila {
+    color: #d9b8ff;
+}
+
+.pequeno {
+    font-size: 16px;
+}
+
+.cursiva {
+    font-family: "Great Vibes", cursive;
+    font-size: clamp(32px, 6vw, 60px);
+    color: #f8d995;
+}
+
+.corona {
+    font-size: 75px;
+    animation: balancear 4s ease-in-out infinite;
+}
+
+@keyframes balancear {
+    0%, 100% {
+        transform: rotate(-4deg);
+    }
+    50% {
+        transform: rotate(4deg);
+    }
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* BOTONES */
+
+.boton {
+    display: inline-block;
+    background: linear-gradient(135deg, #f5d88d, #b98638);
+    color: #241034;
+    border: 0;
+    border-radius: 50px;
+    padding: 16px 28px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(247,211,131,.25);
+    transition: transform .3s, box-shadow .3s;
+    margin: 8px;
+}
+
+.boton:hover {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 0 30px rgba(247,211,131,.6);
+}
+
+.boton-secundario {
+    background: transparent;
+    border: 1px solid #d9b8ff;
+    color: #f5dca1;
+}
+
+/* CARTAS */
+
+.tarjetas {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 950px;
+}
+
+.tarjeta {
+    background: rgba(43,22,77,.65);
+    border: 1px solid rgba(246,216,139,.4);
+    border-radius: 25px;
+    padding: 28px;
+    width: min(100%, 280px);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 10px 35px rgba(0,0,0,.2);
+}
+
+.tarjeta p {
+    font-size: 17px;
+}
+
+/* CUENTA REGRESIVA */
+
+.cuenta {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 30px 0;
+}
+
+.numero {
+    background: rgba(32,15,60,.8);
+    border: 1px solid #d7ad61;
+    border-radius: 15px;
+    min-width: 85px;
+    padding: 20px 10px;
+}
+
+.numero strong {
+    display: block;
+    font-size: 38px;
+    color: #ffe5a1;
+}
+
+.numero span {
+    color: #d9b8ff;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+/* MUSICA */
+
+.music-button {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 100;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    border: 1px solid #f6d88b;
+    background: #3d2064;
+    color: #ffe5a1;
+    font-size: 23px;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(246,216,139,.35);
+}
+
+.music-button.playing {
+    animation: pulso 1.5s infinite;
+}
+
+@keyframes pulso {
+    0%, 100% {
+        box-shadow: 0 0 15px rgba(246,216,139,.3);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(246,216,139,.8);
+    }
+}
+
+.music-label {
+    position: fixed;
+    right: 85px;
+    bottom: 35px;
+    z-index: 100;
+    font-size: 13px;
+    color: #ead6ff;
+    background: rgba(25,12,49,.9);
+    padding: 8px 12px;
+    border-radius: 20px;
+    opacity: 0;
+    transition: opacity .3s;
+}
+
+.music-button:hover + .music-label {
+    opacity: 1;
+}
+
+/* REVELADO */
+
+.revelar {
+    opacity: 0;
+    transform: translateY(35px);
+    transition: opacity 1s, transform 1s;
+}
+
+.revelar.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* SEPARADOR */
+
+.separador {
+    color: #f6d88b;
+    font-size: 25px;
+    letter-spacing: 12px;
+    margin: 20px 0;
+}
+
+/* MAPA */
+
+.mapa {
+    width: 100%;
+    max-width: 650px;
+    height: 250px;
+    border: 1px solid #d7ad61;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 25px auto;
+}
+
+.mapa iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* PIE */
+
+footer {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    padding: 50px 20px;
+    background: #0b061d;
+}
+
+@media(max-width:600px) {
+    .seccion {
+        padding: 60px 15px;
+    }
+
+    p {
+        font-size: 17px;
+    }
+
+    .numero {
+        min-width: 68px;
+        padding: 14px 8px;
+    }
+
+    .numero strong {
+        font-size: 27px;
+    }
+
+    .tarjeta {
+        width: 100%;
+    }
+
+    .farol {
+        font-size: 32px;
+    }
+}
+</style>
+
 </head>
 
-<body bgcolor="#2E1745" text="#FFFFFF">
+<body>
 
-    <center>
+<!-- ESTRELLAS Y FAROLES -->
 
-        <br>
+<div id="estrellas"></div>
+<div id="faroles"></div>
 
-        <!-- FAROLES DECORATIVOS -->
-        <font size="6">
-            🏮 ✨ 🏮 ✨ 🏮 ✨ 🏮
-        </font>
+<!-- MUSICA AMBIENTAL -->
 
-        <br><br>
+<audio id="musica" loop>
+    <source src="musica.mp3" type="audio/mpeg">
+</audio>
 
-        <!-- CORONA -->
-        <font size="7">👑</font>
+<button class="music-button" id="musicBtn" aria-label="Reproducir música">
+    🔇
+</button>
 
-        <br>
+<span class="music-label">Música ambiental</span>
 
-        <font face="Georgia" size="4" color="#FFD700">
-            Érase una vez...
-        </font>
+<!-- INICIO -->
 
-        <br><br>
+<section class="seccion hero">
 
-        <font face="Georgia" size="7" color="#FFD700">
-            <b>Mis XV Años</b>
-        </font>
+```
+<div class="contenido">
 
-        <br><br>
+    <div class="corona">👑</div>
 
-        <font face="Georgia" size="6" color="#E6B8FF">
-            <b>Ana Cristina</b>
-        </font>
+    <p class="cursiva">Érase una vez...</p>
 
-        <br>
+    <p class="dorado">Una noche llena de magia</p>
 
-        <font face="Georgia" size="5" color="#FFFFFF">
-            Enriquez More
-        </font>
+    <h1>Mis XV Años</h1>
 
-        <br><br>
+    <div class="separador">✦ ✧ ✦</div>
 
-        <font size="5">
-            🌸 ✨ 👑 ✨ 🌸
-        </font>
+    <h2 class="lila">Ana Cristina</h2>
 
-        <br><br><br>
+    <h2 class="lila">Enriquez More</h2>
 
-        <hr width="70%">
+    <p>
+        Hay momentos que soñamos durante toda nuestra vida,
+        y hoy quiero compartir uno de los más especiales contigo.
+    </p>
 
-        <br>
+    <p class="dorado">
+        Acompáñame a celebrar mis XV años.
+    </p>
 
-        <font face="Georgia" size="4" color="#FFD700">
-            Hay momentos en la vida que imaginamos,
-            soñamos y esperamos durante muchos años...
-        </font>
+    <br>
 
-        <br><br>
+    <a href="#invitacion" class="boton">
+        ✨ Descubrir la invitación
+    </a>
 
-        <font face="Georgia" size="4">
-            Hoy quiero invitarte a formar parte de
-            uno de los días más especiales de mi vida.
-        </font>
+</div>
+```
 
-        <br><br>
+</section>
 
-        <font size="6">🏮</font>
+<!-- FECHA Y CUENTA REGRESIVA -->
 
-        <br><br>
+<section class="seccion" id="invitacion">
 
-        <font face="Georgia" size="5" color="#E6B8FF">
-            Acompáñame a celebrar
-        </font>
+```
+<div class="contenido revelar">
 
-        <br>
+    <p class="cursiva">Nuestra noche mágica</p>
 
-        <font face="Georgia" size="6" color="#FFD700">
-            <b>mis 15 años</b>
-        </font>
+    <h2>10 de Octubre</h2>
 
-        <br><br><br>
+    <p class="dorado">A las 9:00 PM</p>
 
-        <!-- FECHA -->
+    <div class="separador">✦ ✧ ✦</div>
 
-        <table border="1" cellpadding="18" cellspacing="0" width="80%">
-            <tr>
-                <td align="center">
+    <p>
+        Falta muy poco para vivir juntos
+        una noche inolvidable.
+    </p>
 
-                    <font size="5" color="#FFD700">
-                        ✨ FECHA ✨
-                    </font>
+    <div class="cuenta">
 
-                    <br><br>
+        <div class="numero">
+            <strong id="dias">00</strong>
+            <span>DÍAS</span>
+        </div>
 
-                    <font size="6">
-                        <b>10 de Octubre</b>
-                    </font>
+        <div class="numero">
+            <strong id="horas">00</strong>
+            <span>HORAS</span>
+        </div>
 
-                    <br><br>
+        <div class="numero">
+            <strong id="minutos">00</strong>
+            <span>MINUTOS</span>
+        </div>
 
-                    <font size="5">
-                        🕘 9:00 PM
-                    </font>
+        <div class="numero">
+            <strong id="segundos">00</strong>
+            <span>SEGUNDOS</span>
+        </div>
 
-                </td>
-            </tr>
-        </table>
+    </div>
 
-        <br><br><br>
+    <p id="mensajeCuenta" class="dorado"></p>
 
-        <!-- CUENTA REGRESIVA -->
+</div>
+```
 
-        <font face="Georgia" size="5" color="#FFD700">
-            🏮 Nuestra aventura comienza en... 🏮
-        </font>
+</section>
 
-        <br><br>
+<!-- FRASE -->
 
-        <table border="1" cellpadding="15" cellspacing="5">
-            <tr>
+<section class="seccion">
 
-                <td align="center">
-                    <font size="6" id="dias">00</font>
-                    <br>
-                    <font size="3">DÍAS</font>
-                </td>
+```
+<div class="contenido revelar">
 
-                <td align="center">
-                    <font size="6" id="horas">00</font>
-                    <br>
-                    <font size="3">HORAS</font>
-                </td>
+    <div class="corona">🏮</div>
 
-                <td align="center">
-                    <font size="6" id="minutos">00</font>
-                    <br>
-                    <font size="3">MINUTOS</font>
-                </td>
+    <p class="cursiva">
+        "Por fin veo la luz..."
+    </p>
 
-                <td align="center">
-                    <font size="6" id="segundos">00</font>
-                    <br>
-                    <font size="3">SEGUNDOS</font>
-                </td>
+    <p>
+        Y quiero compartir contigo
+        este nuevo capítulo de mi historia.
+    </p>
 
-            </tr>
-        </table>
+    <p class="lila">
+        Tu presencia hará que esta noche
+        sea todavía más especial.
+    </p>
 
-        <br><br>
+</div>
+```
 
-        <font size="6">
-            ✨ 🏮 ✨ 🏮 ✨
-        </font>
+</section>
 
-        <br><br><br>
+<!-- DETALLES -->
 
-        <hr width="70%">
+<section class="seccion">
 
-        <br>
+```
+<div class="contenido revelar">
 
-        <!-- UBICACIÓN -->
+    <h2>Detalles de la celebración</h2>
 
-        <font face="Georgia" size="6" color="#FFD700">
-            📍 Ubicación
-        </font>
+    <div class="separador">✦ ✧ ✦</div>
 
-        <br><br>
+    <div class="tarjetas">
 
-        <font size="4">
-            Te esperamos para vivir juntos
-            una noche mágica e inolvidable.
-        </font>
+        <div class="tarjeta">
 
-        <br><br>
+            <div class="corona">📅</div>
 
-        <!-- CAMBIAR EL ENLACE DE GOOGLE MAPS -->
+            <h3>Fecha</h3>
 
-        <a href="https://maps.google.com/" target="_blank">
-            <button>
-                <font size="5">
-                    📍 VER UBICACIÓN
-                </font>
-            </button>
-        </a>
+            <p>
+                Sábado<br>
+                10 de Octubre
+            </p>
 
-        <br><br>
+        </div>
 
-        <font size="2">
-            Toca el botón para abrir Google Maps
-        </font>
+        <div class="tarjeta">
 
-        <br><br><br>
+            <div class="corona">🕘</div>
 
-        <hr width="70%">
+            <h3>Hora</h3>
 
-        <br>
+            <p>
+                9:00 PM
+            </p>
 
-        <!-- CÓDIGO DE VESTIMENTA -->
+        </div>
 
-        <font face="Georgia" size="6" color="#FFD700">
-            👗 Código de Vestimenta 🤵
-        </font>
+        <div class="tarjeta">
 
-        <br><br>
+            <div class="corona">📍</div>
 
-        <font face="Georgia" size="5">
-            <b>Elegante / Formal</b>
-        </font>
+            <h3>Ubicación</h3>
 
-        <br><br>
+            <p>
+                El lugar de nuestra
+                noche mágica.
+            </p>
 
-        <font size="4">
-            Queremos verte espectacular
-            para compartir esta noche de ensueño.
-        </font>
+        </div>
 
-        <br><br>
+    </div>
 
-        <font size="6">
-            👗 ✨ 🤵
-        </font>
+</div>
+```
 
-        <br><br><br>
+</section>
 
-        <hr width="70%">
+<!-- UBICACION -->
 
-        <br>
+<section class="seccion">
 
-        <!-- FRASE TEMÁTICA -->
+```
+<div class="contenido revelar">
 
-        <font size="6">
-            🏮
-        </font>
+    <h2>El lugar de nuestra aventura</h2>
 
-        <br><br>
+    <div class="separador">✦ ✧ ✦</div>
 
-        <font face="Georgia" size="5" color="#E6B8FF">
-            <i>
-                "Por fin veo la luz..."
-            </i>
-        </font>
+    <p>
+        Sigue las luces de los faroles
+        hasta el lugar donde celebraremos
+        esta noche tan especial.
+    </p>
 
-        <br><br>
+    <!-- REEMPLAZA ESTE ENLACE POR EL DE GOOGLE MAPS -->
 
-        <font face="Georgia" size="4">
-            Y quiero compartir contigo
-            este nuevo capítulo de mi historia.
-        </font>
+    <a href="https://maps.google.com/" target="_blank" class="boton">
+        📍 Ver ubicación
+    </a>
 
-        <br><br>
+    <p class="pequeno lila">
+        Presiona el botón para abrir Google Maps.
+    </p>
 
-        <font size="6">
-            🏮 ✨ 🏮 ✨ 🏮
-        </font>
+</div>
+```
 
-        <br><br><br>
+</section>
 
-        <!-- CONFIRMAR ASISTENCIA -->
+<!-- VESTIMENTA -->
 
-        <table border="1" cellpadding="20" width="80%">
-            <tr>
-                <td align="center">
+<section class="seccion">
 
-                    <font face="Georgia" size="5" color="#FFD700">
-                        💜 CONFIRMA TU ASISTENCIA 💜
-                    </font>
+```
+<div class="contenido revelar">
 
-                    <br><br>
+    <h2>Código de vestimenta</h2>
 
-                    <font size="4">
-                        Tu presencia hará esta noche
-                        todavía más especial.
-                    </font>
+    <div class="separador">✦ ✧ ✦</div>
 
-                    <br><br>
+    <div class="tarjetas">
 
-                    <!--
-                        CAMBIAR 51999999999
-                        POR EL NÚMERO DE WHATSAPP
+        <div class="tarjeta">
 
-                        Ejemplo Perú:
-                        51987654321
-                    -->
+            <div class="corona">👗</div>
 
-                    <a href="https://wa.me/51999999999?text=Hola%20%F0%9F%92%9C%20Confirmo%20mi%20asistencia%20a%20los%20XV%20a%C3%B1os%20de%20Ana%20Cristina%20%F0%9F%91%91%E2%9C%A8" target="_blank">
+            <h3>Ellas</h3>
 
-                        <button>
-                            <font size="5">
-                                💬 CONFIRMAR POR WHATSAPP
-                            </font>
-                        </button>
+            <p>
+                Vestido elegante
+                o atuendo formal.
+            </p>
 
-                    </a>
+        </div>
 
-                </td>
-            </tr>
-        </table>
+        <div class="tarjeta">
 
-        <br><br><br>
+            <div class="corona">🤵</div>
 
-        <font face="Georgia" size="5" color="#FFD700">
-            Ana Cristina
-        </font>
+            <h3>Ellos</h3>
 
-        <br>
+            <p>
+                Traje elegante
+                o vestimenta formal.
+            </p>
 
-        <font face="Georgia" size="4">
-            Mis XV Años
-        </font>
+        </div>
 
-        <br><br>
+    </div>
 
-        <font size="6">
-            👑
-        </font>
+    <p class="dorado">
+        Elegante / Formal
+    </p>
 
-        <br><br>
+</div>
+```
 
-        <font size="5">
-            🏮 ✨ 🏮 ✨ 🏮 ✨ 🏮
-        </font>
+</section>
 
-        <br><br><br>
+<!-- CONFIRMACION -->
 
-    </center>
+<section class="seccion">
 
+```
+<div class="contenido revelar">
 
-    <!-- CUENTA REGRESIVA -->
-    <script>
+    <div class="corona">👑</div>
 
-        // Fecha de los XV años:
-        // 10 de octubre de 2026 - 9:00 PM
+    <p class="cursiva">
+        ¿Nos acompañas a vivir esta aventura?
+    </p>
 
-        const fechaFiesta = new Date(
-            "October 10, 2026 21:00:00"
-        ).getTime();
+    <h2>Confirma tu asistencia</h2>
 
+    <p>
+        Tu presencia será el mejor regalo
+        para esta noche tan especial.
+    </p>
 
-        const cuentaRegresiva = setInterval(function() {
+    <!-- REEMPLAZA EL NUMERO DE WHATSAPP -->
 
-            const ahora = new Date().getTime();
+    <a
+        href="https://wa.me/51999999999?text=Hola%20Ana%20Cristina%20%F0%9F%92%9C%20Confirmo%20mi%20asistencia%20a%20tus%20XV%20a%C3%B1os%20%F0%9F%91%91"
+        target="_blank"
+        class="boton"
+    >
+        💬 Confirmar por WhatsApp
+    </a>
 
-            const distancia = fechaFiesta - ahora;
+    <p class="pequeno lila">
+        ¡Será una noche inolvidable!
+    </p>
 
+</div>
+```
 
-            const dias = Math.floor(
-                distancia / (1000 * 60 * 60 * 24)
+</section>
+
+<!-- FINAL -->
+
+<footer>
+
+```
+<div class="corona">🏮</div>
+
+<p class="cursiva">Ana Cristina</p>
+
+<p class="dorado">Mis XV Años</p>
+
+<div class="separador">✦ ✧ ✦</div>
+
+<p class="pequeno">
+    Gracias por formar parte de mi historia.
+</p>
+```
+
+</footer>
+
+<script>
+
+/* ESTRELLAS */
+
+const estrellas = document.getElementById("estrellas");
+
+for (let i = 0; i < 100; i++) {
+
+    const estrella = document.createElement("div");
+
+    estrella.className = "estrella";
+
+    estrella.style.left = Math.random() * 100 + "%";
+    estrella.style.top = Math.random() * 100 + "%";
+
+    const tamano = Math.random() * 3 + 1;
+
+    estrella.style.width = tamano + "px";
+    estrella.style.height = tamano + "px";
+
+    estrella.style.animationDelay = Math.random() * 3 + "s";
+
+    estrellas.appendChild(estrella);
+
+}
+
+/* FAROLES */
+
+const faroles = document.getElementById("faroles");
+
+function crearFarol() {
+
+    const farol = document.createElement("div");
+
+    farol.className = "farol";
+
+    farol.textContent = "🏮";
+
+    farol.style.left = Math.random() * 100 + "%";
+
+    farol.style.animationDuration =
+        (Math.random() * 10 + 15) + "s";
+
+    farol.style.animationDelay =
+        (Math.random() * 10) + "s";
+
+    farol.style.fontSize =
+        (Math.random() * 25 + 30) + "px";
+
+    faroles.appendChild(farol);
+
+}
+
+for (let i = 0; i < 18; i++) {
+    crearFarol();
+}
+
+/* CUENTA REGRESIVA */
+
+const fechaFiesta = new Date(
+    "2026-10-10T21:00:00-05:00"
+).getTime();
+
+const cuentaRegresiva = setInterval(function() {
+
+    const ahora = new Date().getTime();
+
+    const distancia = fechaFiesta - ahora;
+
+    if (distancia <= 0) {
+
+        clearInterval(cuentaRegresiva);
+
+        document.getElementById("dias").textContent = "🎉";
+        document.getElementById("horas").textContent = "HOY";
+        document.getElementById("minutos").textContent = "ES";
+        document.getElementById("segundos").textContent = "EL DÍA";
+
+        document.getElementById("mensajeCuenta").textContent =
+            "¡Hoy celebramos los XV años de Ana Cristina!";
+
+        return;
+
+    }
+
+    const dias = Math.floor(
+        distancia / (1000 * 60 * 60 * 24)
+    );
+
+    const horas = Math.floor(
+        (distancia % (1000 * 60 * 60 * 24))
+        / (1000 * 60 * 60)
+    );
+
+    const minutos = Math.floor(
+        (distancia % (1000 * 60 * 60))
+        / (1000 * 60)
+    );
+
+    const segundos = Math.floor(
+        (distancia % (1000 * 60))
+        / 1000
+    );
+
+    document.getElementById("dias").textContent =
+        String(dias).padStart(2, "0");
+
+    document.getElementById("horas").textContent =
+        String(horas).padStart(2, "0");
+
+    document.getElementById("minutos").textContent =
+        String(minutos).padStart(2, "0");
+
+    document.getElementById("segundos").textContent =
+        String(segundos).padStart(2, "0");
+
+}, 1000);
+
+/* ANIMACIONES AL DESPLAZARSE */
+
+const elementos = document.querySelectorAll(".revelar");
+
+const observador = new IntersectionObserver(function(entradas) {
+
+    entradas.forEach(function(entrada) {
+
+        if (entrada.isIntersecting) {
+
+            entrada.target.classList.add("visible");
+
+        }
+
+    });
+
+}, {
+    threshold: 0.15
+});
+
+elementos.forEach(function(elemento) {
+
+    observador.observe(elemento);
+
+});
+
+/* MUSICA */
+
+const musica = document.getElementById("musica");
+
+const musicBtn = document.getElementById("musicBtn");
+
+let reproduciendo = false;
+
+musicBtn.addEventListener("click", function() {
+
+    if (reproduciendo) {
+
+        musica.pause();
+
+        musicBtn.textContent = "🔇";
+
+        musicBtn.classList.remove("playing");
+
+        reproduciendo = false;
+
+    } else {
+
+        musica.play().then(function() {
+
+            musicBtn.textContent = "🎵";
+
+            musicBtn.classList.add("playing");
+
+            reproduciendo = true;
+
+        }).catch(function() {
+
+            alert(
+                "No se pudo reproducir la música. " +
+                "Verifica que el archivo musica.mp3 exista."
             );
 
-            const horas = Math.floor(
-                (distancia % (1000 * 60 * 60 * 24))
-                / (1000 * 60 * 60)
-            );
+        });
 
-            const minutos = Math.floor(
-                (distancia % (1000 * 60 * 60))
-                / (1000 * 60)
-            );
+    }
 
-            const segundos = Math.floor(
-                (distancia % (1000 * 60))
-                / 1000
-            );
+});
 
-
-            document.getElementById("dias").innerHTML = dias;
-            document.getElementById("horas").innerHTML = horas;
-            document.getElementById("minutos").innerHTML = minutos;
-            document.getElementById("segundos").innerHTML = segundos;
-
-
-            if (distancia < 0) {
-
-                clearInterval(cuentaRegresiva);
-
-                document.getElementById("dias").innerHTML = "🎉";
-                document.getElementById("horas").innerHTML = "HOY";
-                document.getElementById("minutos").innerHTML = "ES";
-                document.getElementById("segundos").innerHTML = "EL DÍA";
-
-            }
-
-        }, 1000);
-
-    </script>
+</script>
 
 </body>
 </html>
