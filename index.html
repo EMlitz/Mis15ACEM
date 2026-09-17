@@ -1,2076 +1,1662 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Mis 15 años - Ana Cristina Enríquez More</title>
-
-  <style>
-    /* =========================================================
-       CONFIGURACIÓN GENERAL
-    ========================================================= */
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: Georgia, "Times New Roman", serif;
-      background: #13081f;
-      color: white;
-      overflow-x: hidden;
-    }
-
-    button,
-    a {
-      font-family: inherit;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    /* =========================================================
-       INTRO - PERGAMINO
-    ========================================================= */
-
-    #intro {
-      position: fixed;
-      inset: 0;
-      z-index: 10000;
-
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      min-height: 100vh;
-
-      background:
-        radial-gradient(circle at center, rgba(79, 37, 112, 0.35), transparent 55%),
-        linear-gradient(180deg, #0d0715, #1d0c2f);
-
-      padding: 20px;
-      transition:
-        opacity 0.8s ease,
-        visibility 0.8s ease;
-    }
-
-    #intro.oculto {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-    }
-
-    .intro-contenido {
-      width: min(900px, 95vw);
-      text-align: center;
-      position: relative;
-    }
-
-    .pergamino-wrap {
-      position: relative;
-      width: min(850px, 95vw);
-      margin: auto;
-    }
-
-    .pergamino-imagen {
-      width: 100%;
-      filter: drop-shadow(0 20px 35px rgba(0, 0, 0, 0.65));
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mis 15 años | Ana Cristina</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+
+        /* =====================================
+           CONFIGURACIÓN GENERAL
+        ===================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #080617;
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
 
-    .pergamino-texto {
-      position: absolute;
-      inset: 18% 16% 26%;
+        button {
+            font-family: inherit;
+        }
 
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-
-      text-align: center;
+        .oculto {
+            display: none !important;
+        }
 
-      color: #4e2b25;
-
-      text-shadow:
-        0 1px 0 rgba(255, 255, 255, 0.35);
-
-      pointer-events: none;
-    }
+        /* =====================================
+           PANTALLA DEL PERGAMINO
+        ===================================== */
+
+        #portada {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(255, 225, 164, 0.12),
+                    transparent 60%
+                ),
+                #100b20;
+
+            transition: opacity 1s ease;
+        }
 
-    .pergamino-texto h1 {
-      font-size: clamp(26px, 4vw, 52px);
-      line-height: 1.3;
-      font-weight: normal;
-      max-width: 650px;
-    }
+        .pergamino-contenedor {
+            position: relative;
+            width: min(90vw, 650px);
 
-    .boton-sol {
-      position: absolute;
-      left: 50%;
-      bottom: 8%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-      transform: translateX(-50%);
+        .pergamino {
+            width: 100%;
+            display: block;
+        }
 
-      width: clamp(72px, 10vw, 120px);
-      aspect-ratio: 1 / 1;
+        .contenido-pergamino {
+            position: absolute;
+            inset: 0;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
 
-      border: 0;
-      padding: 0;
+            text-align: center;
 
-      background: transparent;
+            padding: 15% 12%;
+        }
 
-      cursor: pointer;
+        .texto-invitacion {
+            color: #4c2b69;
+            font-family: 'Cinzel', serif;
+            font-size: clamp(18px, 3.5vw, 30px);
+            line-height: 1.7;
+            font-weight: 600;
+        }
 
-      border-radius: 50%;
+        .sol-boton {
+            margin-top: 25px;
 
-      filter:
-        drop-shadow(0 0 10px rgba(164, 82, 255, 0.75))
-        drop-shadow(0 0 25px rgba(128, 52, 255, 0.45));
+            width: clamp(70px, 15vw, 105px);
 
-      transition:
-        transform 0.25s ease,
-        filter 0.25s ease;
-    }
+            background: none;
+            border: none;
+            cursor: pointer;
 
-    .boton-sol:hover {
-      transform: translateX(-50%) scale(1.1);
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
 
-      filter:
-        drop-shadow(0 0 15px rgba(196, 127, 255, 1))
-        drop-shadow(0 0 35px rgba(128, 52, 255, 0.8));
-    }
+        .sol-boton img {
+            width: 100%;
+            display: block;
 
-    .boton-sol:active {
-      transform: translateX(-50%) scale(0.95);
-    }
+            filter: drop-shadow(0 0 12px rgba(191, 126, 255, 0.45));
 
-    .boton-sol img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
+            animation: brilloSol 3s ease-in-out infinite;
+        }
 
-    .texto-abrir {
-      position: absolute;
-      left: 50%;
-      bottom: 2%;
-      transform: translateX(-50%);
+        .sol-boton:hover {
+            transform: scale(1.12);
+        }
 
-      width: 100%;
+        @keyframes brilloSol {
+            0%, 100% {
+                filter: drop-shadow(0 0 8px rgba(191, 126, 255, 0.3));
+            }
 
-      color: #593448;
+            50% {
+                filter: drop-shadow(0 0 25px rgba(191, 126, 255, 0.9));
+            }
+        }
 
-      font-size: clamp(12px, 1.7vw, 17px);
-      letter-spacing: 1px;
+        /* =====================================
+           VIDEO
+        ===================================== */
 
-      pointer-events: none;
-    }
+        #pantalla-video {
+            position: fixed;
+            inset: 0;
+            z-index: 900;
 
-    /* =========================================================
-       VIDEO
-    ========================================================= */
+            background: #000;
 
-    #pantallaVideo {
-      position: fixed;
-      inset: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-      z-index: 9500;
+        #video-invitacion {
+            width: 100%;
+            height: 100%;
 
-      background: black;
+            object-fit: contain;
+        }
 
-      display: none;
-      justify-content: center;
-      align-items: center;
-    }
+        /* =====================================
+           PÁGINA PRINCIPAL
+        ===================================== */
 
-    #pantallaVideo.activo {
-      display: flex;
-    }
+        #pagina-principal {
+            position: relative;
+            min-height: 100vh;
 
-    #videoInvitacion {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      background: black;
-    }
+            background-color: #080617;
 
-    .saltar-video {
-      position: absolute;
-      right: 20px;
-      bottom: 20px;
+            overflow: hidden;
+        }
 
-      z-index: 20;
+        .fondo-cielo {
+            position: fixed;
+            inset: 0;
 
-      background: rgba(0, 0, 0, 0.55);
-      color: white;
+            background-image:
+                linear-gradient(
+                    rgba(8, 6, 23, 0.12),
+                    rgba(8, 6, 23, 0.12)
+                ),
+                url("assets/fondo-faroles.jfif");
 
-      border: 1px solid rgba(255, 255, 255, 0.35);
-      border-radius: 30px;
+            background-size: cover;
+            background-position: center;
 
-      padding: 10px 18px;
+            z-index: 0;
+        }
 
-      cursor: pointer;
+        .contenido-principal {
+            position: relative;
+            z-index: 2;
 
-      backdrop-filter: blur(8px);
+            min-height: 100vh;
 
-      transition: 0.25s;
-    }
+            display: flex;
+            flex-direction: column;
+            align-items: center;
 
-    .saltar-video:hover {
-      background: rgba(85, 42, 115, 0.9);
-    }
+            padding: 60px 20px 100px;
+        }
 
-    /* =========================================================
-       PÁGINA PRINCIPAL
-    ========================================================= */
+        /* =====================================
+           FAROLES
+        ===================================== */
 
-    #paginaPrincipal {
-      display: none;
+        #contenedor-faroles {
+            position: fixed;
+            inset: 0;
 
-      position: relative;
+            z-index: 1;
 
-      min-height: 100vh;
+            pointer-events: none;
 
-      background-image:
-        linear-gradient(
-          180deg,
-          rgba(10, 4, 18, 0.2),
-          rgba(13, 5, 24, 0.35)
-        ),
-        url("assets/fondo-faroles.jfif");
+            overflow: hidden;
+        }
 
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
+        .farol {
+            position: absolute;
 
-      overflow: hidden;
-    }
+            width: 55px;
 
-    #paginaPrincipal.activo {
-      display: block;
-    }
+            pointer-events: auto;
+            cursor: pointer;
 
-    /* =========================================================
-       FAROLES FLOTANTES
-    ========================================================= */
+            animation:
+                flotar 7s ease-in-out infinite,
+                aparecerFarol 1.5s ease forwards;
 
-    #contenedorFaroles {
-      position: fixed;
-      inset: 0;
+            transition: opacity 0.5s ease;
+        }
 
-      z-index: 2;
+        .farol img {
+            width: 100%;
+            display: block;
 
-      overflow: hidden;
+            filter: drop-shadow(0 0 12px rgba(255, 180, 75, 0.5));
+        }
 
-      pointer-events: none;
-    }
+        .farol:hover {
+            filter: brightness(1.3);
+        }
 
-    .farol {
-      position: absolute;
+        .farol.liberado {
+            animation: subirFarol 1.2s ease-in forwards;
+            pointer-events: none;
+        }
 
-      bottom: -160px;
+        @keyframes flotar {
+            0%, 100% {
+                transform: translateY(0) rotate(-3deg);
+            }
 
-      width: var(--tamano, 70px);
+            50% {
+                transform: translateY(-20px) rotate(3deg);
+            }
+        }
 
-      opacity: var(--opacidad, 0.9);
+        @keyframes aparecerFarol {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
 
-      pointer-events: auto;
-      cursor: pointer;
+            to {
+                opacity: 0.9;
+            }
+        }
 
-      filter:
-        drop-shadow(0 0 10px rgba(255, 185, 85, 0.75))
-        drop-shadow(0 0 25px rgba(255, 136, 30, 0.35));
+        @keyframes subirFarol {
+            to {
+                transform: translateY(-120vh) scale(0.8);
+                opacity: 0;
+            }
+        }
 
-      animation:
-        subirFarol var(--duracion, 16s) linear forwards,
-        balanceoFarol 3.5s ease-in-out infinite alternate;
+        /* =====================================
+           CORONA Y TÍTULO
+        ===================================== */
 
-      transition:
-        transform 1.1s cubic-bezier(.2,.85,.3,1),
-        opacity 1.1s ease;
-    }
+        .corona {
+            width: clamp(110px, 22vw, 190px);
 
-    .farol.disparado {
-      animation: none !important;
-      transform: translateY(-130vh) scale(0.6) rotate(12deg);
-      opacity: 0;
-    }
+            margin-bottom: 20px;
 
-    @keyframes subirFarol {
-      0% {
-        transform: translateY(0);
-      }
+            filter: drop-shadow(0 0 12px rgba(255, 206, 100, 0.4));
+        }
 
-      100% {
-        transform: translateY(-135vh);
-      }
-    }
+        .titulo-principal {
+            font-family: 'Cinzel', serif;
 
-    @keyframes balanceoFarol {
-      0% {
-        margin-left: -10px;
-      }
+            text-align: center;
 
-      100% {
-        margin-left: 14px;
-      }
-    }
+            font-size: clamp(20px, 4vw, 40px);
 
-    /* =========================================================
-       CONTENIDO SUPERIOR
-    ========================================================= */
+            line-height: 1.6;
 
-    #inicio {
-      min-height: 100vh;
+            font-weight: 500;
 
-      position: relative;
+            color: #f7e5b0;
 
-      z-index: 10;
+            text-shadow:
+                0 0 10px rgba(255, 216, 133, 0.25);
+        }
 
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+        .titulo-principal span {
+            display: block;
 
-      padding:
-        60px
-        20px
-        40px;
+            font-family: 'Great Vibes', cursive;
 
-      text-align: center;
-    }
+            font-size: clamp(35px, 7vw, 75px);
 
-    .corona {
-      width: clamp(110px, 15vw, 190px);
+            color: #f7d99b;
+        }
 
-      margin: 0 auto 5px;
+        .subtitulo {
+            margin-top: 20px;
 
-      filter:
-        drop-shadow(0 5px 12px rgba(0,0,0,0.45))
-        drop-shadow(0 0 15px rgba(255, 218, 114, 0.3));
-    }
+            font-family: 'Great Vibes', cursive;
 
-    .titulo-principal {
-      max-width: 900px;
+            font-size: clamp(25px, 5vw, 45px);
 
-      text-shadow:
-        0 3px 8px rgba(0,0,0,0.75),
-        0 0 18px rgba(145, 71, 220, 0.4);
-    }
+            color: #e8c5ff;
 
-    .titulo-principal .erase {
-      font-size: clamp(28px, 4vw, 48px);
-      font-style: italic;
-      font-weight: normal;
-    }
+            text-align: center;
+        }
 
-    .titulo-principal .magia {
-      font-size: clamp(23px, 3.5vw, 42px);
-      margin-top: 6px;
-    }
+        /* =====================================
+           PERSONAJES
+        ===================================== */
 
-    .titulo-principal .mis15 {
-      font-size: clamp(48px, 8vw, 92px);
+        .personajes {
+            width: 100%;
+            max-width: 1250px;
 
-      margin-top: 12px;
+            margin-top: 70px;
 
-      line-height: 0.95;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
 
-      font-weight: normal;
-    }
+            gap: 15px;
+        }
 
-    .titulo-principal .nombre {
-      font-size: clamp(25px, 4vw, 47px);
+        .personaje {
+            position: relative;
 
-      margin-top: 16px;
+            flex: 1;
 
-      font-weight: normal;
-    }
+            max-width: 220px;
 
-    .subtitulo {
-      margin-top: 25px;
+            background: none;
+            border: none;
 
-      font-size: clamp(18px, 2.7vw, 29px);
+            cursor: pointer;
 
-      opacity: 0.95;
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
 
-      text-shadow: 0 2px 8px black;
-    }
+        .personaje img {
+            width: 100%;
 
-    /* =========================================================
-       PERSONAJES
-    ========================================================= */
+            display: block;
 
-    .personajes {
-      width: min(1250px, 98vw);
+            object-fit: contain;
 
-      margin-top: 42px;
+            filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.4));
+        }
 
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
+        .personaje:hover {
+            transform: translateY(-10px) scale(1.04);
 
-      justify-content: center;
-      align-items: end;
+            filter: drop-shadow(0 0 15px rgba(220, 180, 255, 0.5));
+        }
 
-      gap: 12px;
-    }
+        .nombre-personaje {
+            display: block;
 
-    .personaje {
-      position: relative;
+            margin-top: 8px;
 
-      border: 0;
-      background: transparent;
+            font-family: 'Cinzel', serif;
 
-      color: white;
+            font-size: 13px;
 
-      padding: 0;
+            color: #f4d99e;
+        }
 
-      cursor: pointer;
+        /* =====================================
+           MODAL DE PRESENTACIÓN
+        ===================================== */
 
-      min-width: 0;
+        #modal-personaje {
+            position: fixed;
+            inset: 0;
 
-      transition:
-        transform 0.25s ease,
-        filter 0.25s ease;
-    }
+            z-index: 2000;
 
-    .personaje:hover {
-      transform: translateY(-8px) scale(1.03);
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-      filter:
-        drop-shadow(0 0 18px rgba(236, 195, 255, 0.45));
-    }
+            padding: 20px;
 
-    .personaje img {
-      width: 100%;
+            background: rgba(8, 4, 25, 0.65);
 
-      height: clamp(190px, 29vw, 390px);
+            backdrop-filter: blur(4px);
 
-      object-fit: contain;
+            opacity: 0;
 
-      object-position: bottom center;
+            pointer-events: none;
 
-      filter:
-        drop-shadow(0 12px 10px rgba(0,0,0,0.35));
-    }
+            transition: opacity 0.3s ease;
+        }
 
-    .personaje-nombre {
-      margin-top: 7px;
+        #modal-personaje.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
 
-      font-size: clamp(14px, 1.7vw, 21px);
+        .burbuja-modal {
+            position: relative;
 
-      text-shadow: 0 2px 5px black;
-    }
+            width: min(90vw, 450px);
 
-    .indicacion {
-      margin-top: 15px;
+            padding: 35px 30px;
 
-      font-size: 14px;
+            background:
+                linear-gradient(
+                    145deg,
+                    #fff5df,
+                    #ead0a3
+                );
 
-      opacity: 0.8;
-    }
+            border: 3px solid #b78b4e;
 
-    /* =========================================================
-       MODAL / BURBUJA TEMPORAL
-    ========================================================= */
+            border-radius: 20px;
 
-    #modalPersonaje {
-      position: fixed;
+            text-align: center;
 
-      left: 50%;
-      top: 50%;
+            color: #4d2d61;
 
-      transform: translate(-50%, -50%) scale(0.9);
+            box-shadow:
+                0 0 40px rgba(232, 190, 255, 0.25);
 
-      z-index: 20000;
+            transform: scale(0.8);
 
-      width: min(400px, 88vw);
+            transition: transform 0.3s ease;
+        }
 
-      padding: 25px;
+        #modal-personaje.visible .burbuja-modal {
+            transform: scale(1);
+        }
 
-      border-radius: 24px;
+        .burbuja-modal::after {
+            content: "";
 
-      background:
-        linear-gradient(
-          145deg,
-          rgba(55, 24, 82, 0.96),
-          rgba(23, 8, 39, 0.96)
-        );
+            position: absolute;
 
-      border:
-        1px solid
-        rgba(226, 185, 255, 0.4);
+            bottom: -18px;
+            left: 50%;
 
-      box-shadow:
-        0 25px 70px rgba(0,0,0,0.55),
-        0 0 30px rgba(132, 56, 210, 0.2);
+            transform: translateX(-50%);
 
-      text-align: center;
+            border-left: 18px solid transparent;
+            border-right: 18px solid transparent;
+            border-top: 20px solid #b78b4e;
+        }
 
-      opacity: 0;
-      visibility: hidden;
+        .cerrar-modal {
+            position: absolute;
 
-      pointer-events: none;
+            top: 10px;
+            right: 15px;
 
-      transition:
-        opacity 0.25s ease,
-        transform 0.25s ease,
-        visibility 0.25s;
-    }
+            background: none;
+            border: none;
 
-    #modalPersonaje.visible {
-      opacity: 1;
-      visibility: visible;
+            font-size: 25px;
 
-      transform: translate(-50%, -50%) scale(1);
-    }
+            color: #5c386c;
 
-    #modalPersonaje h3 {
-      font-size: 28px;
-      margin-bottom: 10px;
-    }
+            cursor: pointer;
+        }
 
-    #modalPersonaje p {
-      line-height: 1.5;
-      font-size: 17px;
-    }
+        #modal-titulo {
+            font-family: 'Cinzel', serif;
 
-    #overlayModal {
-      position: fixed;
-      inset: 0;
+            font-size: 22px;
 
-      z-index: 19900;
+            margin-bottom: 15px;
+        }
 
-      background: rgba(0,0,0,0.35);
+        #modal-texto {
+            font-size: 15px;
 
-      backdrop-filter: blur(2px);
+            line-height: 1.7;
+        }
 
-      opacity: 0;
-      visibility: hidden;
+        /* =====================================
+           SECCIONES DE INFORMACIÓN
+        ===================================== */
 
-      pointer-events: none;
+        .secciones {
+            width: 100%;
+            max-width: 900px;
 
-      transition: 0.25s;
-    }
+            margin-top: 100px;
+        }
 
-    #overlayModal.visible {
-      opacity: 1;
-      visibility: visible;
-    }
+        .seccion-info {
+            min-height: 350px;
 
-    /* =========================================================
-       SECCIONES
-    ========================================================= */
+            margin-bottom: 80px;
 
-    .seccion {
-      position: relative;
+            padding: 45px 30px;
 
-      z-index: 10;
+            background: rgba(21, 12, 42, 0.78);
 
-      min-height: 100vh;
+            border: 1px solid rgba(235, 190, 255, 0.3);
 
-      display: flex;
-      justify-content: center;
-      align-items: center;
+            border-radius: 20px;
 
-      padding: 100px 20px;
+            text-align: center;
 
-      scroll-margin-top: 0;
-    }
+            scroll-margin-top: 30px;
 
-    .seccion-contenido {
-      width: min(850px, 94vw);
+            box-shadow:
+                0 0 30px rgba(0, 0, 0, 0.2);
+        }
 
-      text-align: center;
+        .seccion-info h2 {
+            font-family: 'Cinzel', serif;
 
-      padding: clamp(28px, 5vw, 60px);
+            color: #f5dca5;
 
-      background:
-        linear-gradient(
-          145deg,
-          rgba(45, 20, 67, 0.83),
-          rgba(15, 7, 28, 0.88)
-        );
+            font-size: clamp(22px, 4vw, 32px);
 
-      border-radius: 32px;
+            margin-bottom: 25px;
+        }
 
-      border:
-        1px solid
-        rgba(224, 185, 255, 0.22);
+        .seccion-info p {
+            color: #f5eafa;
 
-      box-shadow:
-        0 25px 80px rgba(0,0,0,0.45);
+            font-size: 16px;
 
-      backdrop-filter: blur(12px);
-    }
+            line-height: 1.9;
 
-    .seccion-personaje {
-      width: min(270px, 60vw);
-      height: 300px;
+            margin-bottom: 15px;
+        }
 
-      margin: 0 auto 12px;
+        .icono-seccion {
+            width: 70px;
 
-      object-fit: contain;
+            margin-bottom: 20px;
 
-      filter:
-        drop-shadow(0 15px 18px rgba(0,0,0,0.45));
-    }
+            opacity: 0.9;
+        }
 
-    .seccion h2 {
-      font-size: clamp(34px, 5vw, 58px);
+        /* =====================================
+           CONTADOR
+        ===================================== */
 
-      margin-bottom: 20px;
+        .contador {
+            display: flex;
 
-      font-weight: normal;
-    }
+            justify-content: center;
 
-    .seccion p {
-      font-size: clamp(18px, 2.5vw, 25px);
-      line-height: 1.7;
-    }
+            gap: 12px;
 
-    .frase-destacada {
-      font-size: clamp(23px, 3.2vw, 34px) !important;
+            flex-wrap: wrap;
 
-      margin-top: 18px;
+            margin-top: 30px;
+        }
 
-      font-style: italic;
-    }
+        .contador-caja {
+            min-width: 75px;
 
-    /* =========================================================
-       FECHA / HORA
-    ========================================================= */
+            padding: 15px 10px;
 
-    .datos-evento {
-      margin-top: 25px;
+            background: rgba(111, 62, 145, 0.35);
 
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
+            border: 1px solid rgba(235, 190, 255, 0.35);
 
-      gap: 15px;
-    }
+            border-radius: 12px;
+        }
 
-    .dato {
-      min-width: 180px;
+        .contador-caja strong {
+            display: block;
 
-      background: rgba(255,255,255,0.08);
+            font-family: 'Cinzel', serif;
 
-      border:
-        1px solid
-        rgba(255,255,255,0.12);
+            font-size: 26px;
 
-      border-radius: 18px;
+            color: #f6d99d;
+        }
 
-      padding: 20px;
-    }
+        .contador-caja small {
+            color: #e8d8f5;
 
-    .dato span {
-      display: block;
+            font-size: 11px;
 
-      font-size: 14px;
+            text-transform: uppercase;
+        }
 
-      opacity: 0.8;
+        /* =====================================
+           BOTONES
+        ===================================== */
 
-      margin-bottom: 8px;
+        .boton {
+            display: inline-block;
 
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
+            margin-top: 20px;
 
-    .dato strong {
-      font-size: 22px;
-    }
+            padding: 14px 25px;
 
-    /* =========================================================
-       CUENTA REGRESIVA
-    ========================================================= */
+            background: linear-gradient(
+                135deg,
+                #8e56b5,
+                #bd8ad6
+            );
 
-    .cuenta-regresiva {
-      margin-top: 35px;
+            color: white;
 
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
+            border: none;
 
-      gap: 12px;
-    }
+            border-radius: 30px;
 
-    .contador-caja {
-      background:
-        rgba(255,255,255,0.08);
+            text-decoration: none;
 
-      border:
-        1px solid
-        rgba(255,255,255,0.12);
+            cursor: pointer;
 
-      border-radius: 18px;
+            font-size: 14px;
 
-      padding: 20px 8px;
-    }
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
 
-    .contador-numero {
-      display: block;
+        .boton:hover {
+            transform: translateY(-3px);
 
-      font-size: clamp(32px, 5vw, 55px);
+            box-shadow: 0 5px 20px rgba(190, 130, 230, 0.4);
+        }
 
-      font-weight: bold;
+        /* =====================================
+           CÓDIGO DE VESTIMENTA
+        ===================================== */
 
-      line-height: 1;
-    }
+        .vestimenta {
+            display: flex;
 
-    .contador-texto {
-      display: block;
+            justify-content: center;
 
-      margin-top: 8px;
+            gap: 40px;
 
-      text-transform: uppercase;
+            flex-wrap: wrap;
 
-      font-size: 12px;
+            margin-top: 30px;
+        }
 
-      letter-spacing: 1px;
+        .vestimenta-item {
+            min-width: 180px;
+        }
 
-      opacity: 0.75;
-    }
+        .vestimenta-item h3 {
+            font-family: 'Cinzel', serif;
 
-    .evento-finalizado {
-      grid-column: 1 / -1;
+            color: #f6d99d;
 
-      font-size: 25px;
+            margin-bottom: 10px;
+        }
 
-      padding: 20px;
-    }
+        /* =====================================
+           FOOTER
+        ===================================== */
 
-    /* =========================================================
-       BOTONES
-    ========================================================= */
+        footer {
+            position: relative;
 
-    .boton {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
+            z-index: 2;
 
-      gap: 8px;
+            text-align: center;
 
-      margin-top: 28px;
+            padding: 30px 20px;
 
-      padding: 15px 26px;
+            color: #d8c5e6;
 
-      border-radius: 50px;
+            font-family: 'Great Vibes', cursive;
 
-      text-decoration: none;
+            font-size: 25px;
+        }
 
-      background:
-        linear-gradient(
-          135deg,
-          #8d4bbd,
-          #572472
-        );
+        /* =====================================
+           RESPONSIVE
+        ===================================== */
 
-      color: white;
+        @media (max-width: 700px) {
 
-      border:
-        1px solid
-        rgba(255,255,255,0.25);
+            .contenido-principal {
+                padding-top: 35px;
+            }
 
-      box-shadow:
-        0 10px 25px rgba(0,0,0,0.25);
+            .personajes {
+                gap: 5px;
+            }
 
-      font-size: 18px;
+            .nombre-personaje {
+                font-size: 10px;
+            }
 
-      cursor: pointer;
+            .personaje {
+                max-width: 125px;
+            }
 
-      transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-    }
+            .seccion-info {
+                padding: 35px 20px;
+            }
 
-    .boton:hover {
-      transform: translateY(-3px);
+            .farol {
+                width: 42px;
+            }
 
-      box-shadow:
-        0 15px 35px rgba(0,0,0,0.35);
-    }
+        }
 
-    /* =========================================================
-       BOTÓN VOLVER ARRIBA
-    ========================================================= */
+    </style>
 
-    #volverArriba {
-      position: fixed;
-
-      right: 18px;
-      bottom: 18px;
-
-      z-index: 5000;
-
-      width: 50px;
-      height: 50px;
-
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      border: 1px solid rgba(255,255,255,0.25);
-
-      border-radius: 50%;
-
-      background: rgba(51, 20, 75, 0.75);
-
-      backdrop-filter: blur(10px);
-
-      color: white;
-
-      font-size: 22px;
-
-      cursor: pointer;
-
-      opacity: 0;
-      visibility: hidden;
-
-      transition: 0.3s;
-    }
-
-    #volverArriba.visible {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    /* =========================================================
-       RESPONSIVE
-    ========================================================= */
-
-    @media (max-width: 850px) {
-
-      .personajes {
-        grid-template-columns: repeat(5, minmax(85px, 1fr));
-
-        gap: 0;
-      }
-
-      .personaje img {
-        height: clamp(150px, 36vw, 285px);
-      }
-
-      .personaje-nombre {
-        font-size: 12px;
-      }
-    }
-
-    @media (max-width: 650px) {
-
-      #inicio {
-        padding-top: 35px;
-      }
-
-      .corona {
-        width: 100px;
-      }
-
-      .personajes {
-        width: 100%;
-
-        grid-template-columns: repeat(5, 1fr);
-
-        gap: 0;
-      }
-
-      .personaje img {
-        height: 160px;
-      }
-
-      .personaje-nombre {
-        display: none;
-      }
-
-      .cuenta-regresiva {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .seccion {
-        padding: 70px 14px;
-      }
-
-      .seccion-contenido {
-        border-radius: 24px;
-      }
-
-      .pergamino-texto {
-        inset: 17% 14% 26%;
-      }
-
-      .pergamino-texto h1 {
-        font-size: clamp(19px, 5.5vw, 30px);
-      }
-
-      .boton-sol {
-        bottom: 8%;
-      }
-
-      .texto-abrir {
-        bottom: 1%;
-      }
-    }
-
-    @media (max-width: 480px) {
-
-      .personaje img {
-        height: 135px;
-      }
-
-      .titulo-principal .mis15 {
-        font-size: 54px;
-      }
-
-      .titulo-principal .nombre {
-        font-size: 27px;
-      }
-
-      .seccion-personaje {
-        height: 230px;
-      }
-    }
-  </style>
 </head>
 
 <body>
 
-  <!-- =======================================================
-       INTRO CON PERGAMINO
-  ======================================================== -->
+    <!-- =====================================
+         PORTADA DEL PERGAMINO
+    ===================================== -->
 
-  <section id="intro">
+    <section id="portada">
 
-    <div class="intro-contenido">
+        <div class="pergamino-contenedor">
 
-      <div class="pergamino-wrap">
+            <img
+                class="pergamino"
+                src="assets/pergamino.jfif"
+                alt="Pergamino de invitación"
+            >
 
-        <img
-          class="pergamino-imagen"
-          src="assets/pergamino.png"
-          alt="Pergamino de invitación"
-        >
+            <div class="contenido-pergamino">
 
-        <div class="pergamino-texto">
-          <h1>
-            Estás cordialmente invitado
-            a celebrar mis 15 años
-          </h1>
+                <p class="texto-invitacion">
+                    Estás cordialmente invitado
+                    <br>
+                    a celebrar mis 15 años
+                </p>
+
+                <button
+                    class="sol-boton"
+                    id="boton-abrir"
+                    aria-label="Abrir invitación"
+                >
+
+                    <img
+                        src="assets/sol-morado.png"
+                        alt="Abrir invitación"
+                    >
+
+                </button>
+
+            </div>
+
         </div>
 
-        <button
-          class="boton-sol"
-          id="abrirInvitacion"
-          aria-label="Abrir invitación"
-        >
-          <img
-            src="assets/sol-morado.png"
-            alt="Abrir invitación"
-          >
-        </button>
+    </section>
 
-        <div class="texto-abrir">
-          Presiona el símbolo para abrir la invitación
+
+    <!-- =====================================
+         PANTALLA DEL VIDEO
+    ===================================== -->
+
+    <section id="pantalla-video" class="oculto">
+
+        <video
+            id="video-invitacion"
+            playsinline
+            preload="auto"
+        >
+
+            <source src="assets/video.mp4" type="video/mp4">
+
+            Tu navegador no puede reproducir este video.
+
+        </video>
+
+    </section>
+
+
+    <!-- =====================================
+         PÁGINA PRINCIPAL
+    ===================================== -->
+
+    <main id="pagina-principal" class="oculto">
+
+        <div class="fondo-cielo"></div>
+
+        <div id="contenedor-faroles"></div>
+
+
+        <div class="contenido-principal">
+
+            <!-- CORONA Y TÍTULO -->
+
+            <img
+                class="corona"
+                src="assets/corona.png"
+                alt="Corona de Rapunzel"
+            >
+
+            <h1 class="titulo-principal">
+
+                Érase una vez,
+                <br>
+
+                una noche llena de magia
+
+                <span>Mis 15 años</span>
+
+                Ana Cristina Enríquez More
+
+            </h1>
+
+            <p class="subtitulo">
+                Acompáñame a celebrar mis 15 años
+            </p>
+
+
+            <!-- PERSONAJES -->
+
+            <div class="personajes">
+
+                <button
+                    class="personaje"
+                    data-personaje="rapunzel"
+                    aria-label="Sobre la quinceañera"
+                >
+
+                    <img
+                        src="assets/rapunzel.png"
+                        alt="Rapunzel"
+                    >
+
+                    <span class="nombre-personaje">
+                        Rapunzel
+                    </span>
+
+                </button>
+
+
+                <button
+                    class="personaje"
+                    data-personaje="eugene"
+                    aria-label="Día y hora del evento"
+                >
+
+                    <img
+                        src="assets/eugene.png"
+                        alt="Eugene"
+                    >
+
+                    <span class="nombre-personaje">
+                        Eugene
+                    </span>
+
+                </button>
+
+
+                <button
+                    class="personaje"
+                    data-personaje="pascal"
+                    aria-label="Ubicación del evento"
+                >
+
+                    <img
+                        src="assets/pascal.png"
+                        alt="Pascal"
+                    >
+
+                    <span class="nombre-personaje">
+                        Pascal
+                    </span>
+
+                </button>
+
+
+                <button
+                    class="personaje"
+                    data-personaje="maximus"
+                    aria-label="Confirmar asistencia"
+                >
+
+                    <img
+                        src="assets/maximus.png"
+                        alt="Máximus"
+                    >
+
+                    <span class="nombre-personaje">
+                        Máximus
+                    </span>
+
+                </button>
+
+
+                <button
+                    class="personaje"
+                    data-personaje="padres"
+                    aria-label="Código de vestimenta"
+                >
+
+                    <img
+                        src="assets/padres.png"
+                        alt="Padres de Rapunzel"
+                    >
+
+                    <span class="nombre-personaje">
+                        Padres
+                    </span>
+
+                </button>
+
+            </div>
+
+
+            <!-- =====================================
+                 SECCIONES DE INFORMACIÓN
+            ===================================== -->
+
+            <div class="secciones">
+
+
+                <!-- RAPUNZEL -->
+
+                <section
+                    id="seccion-rapunzel"
+                    class="seccion-info"
+                >
+
+                    <h2>Sobre la quinceañera</h2>
+
+                    <p>
+                        Hola, soy Ana Cristina Enríquez More.
+                    </p>
+
+                    <p>
+                        Voy a cumplir 15 años y quiero invitarte
+                        a celebrar conmigo esta noche tan especial.
+                    </p>
+
+                    <p>
+                        Será una noche llena de magia,
+                        alegría y momentos inolvidables.
+                    </p>
+
+                </section>
+
+
+                <!-- EUGENE -->
+
+                <section
+                    id="seccion-eugene"
+                    class="seccion-info"
+                >
+
+                    <h2>Día y hora del evento</h2>
+
+                    <p>
+                        Te espero para celebrar juntos
+                        esta noche tan especial.
+                    </p>
+
+                    <p>
+                        <strong>Fecha:</strong>
+                        <span id="fecha-evento">
+                            Por confirmar
+                        </span>
+                    </p>
+
+                    <p>
+                        <strong>Hora:</strong>
+                        <span id="hora-evento">
+                            Por confirmar
+                        </span>
+                    </p>
+
+                    <p>
+                        Falta muy poco para vivir juntos
+                        una noche inolvidable.
+                    </p>
+
+
+                    <div class="contador">
+
+                        <div class="contador-caja">
+                            <strong id="dias">00</strong>
+                            <small>Días</small>
+                        </div>
+
+                        <div class="contador-caja">
+                            <strong id="horas">00</strong>
+                            <small>Horas</small>
+                        </div>
+
+                        <div class="contador-caja">
+                            <strong id="minutos">00</strong>
+                            <small>Minutos</small>
+                        </div>
+
+                        <div class="contador-caja">
+                            <strong id="segundos">00</strong>
+                            <small>Segundos</small>
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- PASCAL -->
+
+                <section
+                    id="seccion-pascal"
+                    class="seccion-info"
+                >
+
+                    <h2>Ubicación del evento</h2>
+
+                    <p>
+                        Aquí será el lugar donde celebraremos
+                        mis 15 años.
+                    </p>
+
+                    <p id="direccion-evento">
+                        Dirección pendiente de confirmar.
+                    </p>
+
+                    <a
+                        id="boton-mapa"
+                        class="boton"
+                        href="#"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Ver ubicación en Google Maps
+                    </a>
+
+                </section>
+
+
+                <!-- MAXIMUS -->
+
+                <section
+                    id="seccion-maximus"
+                    class="seccion-info"
+                >
+
+                    <h2>Confirmar asistencia</h2>
+
+                    <p>
+                        Será un honor contar contigo
+                        en esta noche tan especial.
+                    </p>
+
+                    <p>
+                        Confirma tu asistencia
+                        para acompañarnos en la celebración.
+                    </p>
+
+                    <a
+                        id="boton-whatsapp"
+                        class="boton"
+                        href="#"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Confirmar asistencia por WhatsApp
+                    </a>
+
+                </section>
+
+
+                <!-- PADRES -->
+
+                <section
+                    id="seccion-padres"
+                    class="seccion-info"
+                >
+
+                    <h2>Código de vestimenta</h2>
+
+                    <p>
+                        Queremos compartir contigo
+                        una noche elegante y llena de magia.
+                    </p>
+
+
+                    <div class="vestimenta">
+
+                        <div class="vestimenta-item">
+
+                            <h3>Damas</h3>
+
+                            <p>
+                                Vestido elegante
+                                y atuendo formal.
+                            </p>
+
+                        </div>
+
+
+                        <div class="vestimenta-item">
+
+                            <h3>Caballeros</h3>
+
+                            <p>
+                                Traje elegante
+                                y vestimenta formal.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
         </div>
 
-      </div>
+
+        <footer>
+            Con cariño, Ana Cristina
+        </footer>
+
+    </main>
+
+
+    <!-- =====================================
+         MODAL DE PERSONAJES
+    ===================================== -->
+
+    <div
+        id="modal-personaje"
+        aria-hidden="true"
+    >
+
+        <div class="burbuja-modal">
+
+            <button
+                class="cerrar-modal"
+                id="cerrar-modal"
+                aria-label="Cerrar"
+            >
+                ×
+            </button>
+
+            <h2 id="modal-titulo">
+                Información
+            </h2>
+
+            <p id="modal-texto">
+                Aquí aparecerá la información.
+            </p>
+
+        </div>
 
     </div>
 
-  </section>
 
+    <!-- =====================================
+         JAVASCRIPT
+    ===================================== -->
 
-  <!-- =======================================================
-       VIDEO
-  ======================================================== -->
+    <script>
 
-  <section id="pantallaVideo">
+        /* =====================================
+           CONFIGURACIÓN DEL EVENTO
+        ===================================== */
 
-    <video
-      id="videoInvitacion"
-      playsinline
-      preload="auto"
-    >
-      <source
-        src="assets/video.mp4"
-        type="video/mp4"
-      >
-      Tu navegador no soporta video HTML5.
-    </video>
+        const CONFIG = {
 
-    <button
-      id="saltarVideo"
-      class="saltar-video"
-    >
-      Saltar video
-    </button>
-
-  </section>
-
-
-  <!-- =======================================================
-       PÁGINA PRINCIPAL
-  ======================================================== -->
-
-  <main id="paginaPrincipal">
+            // Cambia esta fecha por la fecha real.
+            fechaEvento: "2026-10-01T21:00:00",
 
-    <!-- Faroles creados dinámicamente -->
-    <div id="contenedorFaroles"></div>
-
-
-    <!-- =====================================================
-         INICIO
-    ====================================================== -->
-
-    <section id="inicio">
-
-      <img
-        class="corona"
-        src="assets/corona.png"
-        alt="Corona de Rapunzel"
-      >
-
-      <div class="titulo-principal">
-
-        <div class="erase">
-          Érase una vez,
-        </div>
-
-        <div class="magia">
-          una noche llena de magia
-        </div>
-
-        <div class="mis15">
-          Mis 15 años
-        </div>
-
-        <div class="nombre">
-          Ana Cristina Enríquez More
-        </div>
-
-      </div>
-
-      <div class="subtitulo">
-        Acompáñame a celebrar mis 15 años
-      </div>
-
-
-      <!-- ===================================================
-           PERSONAJES
-      ==================================================== -->
-
-      <div class="personajes">
-
-        <button
-          class="personaje"
-          data-nombre="Rapunzel"
-          data-mensaje="Rapunzel te presentará a nuestra quinceañera."
-          data-destino="seccionRapunzel"
-        >
-          <img
-            src="assets/rapunzel.png"
-            alt="Rapunzel"
-          >
-
-          <div class="personaje-nombre">
-            Rapunzel
-          </div>
-        </button>
-
-
-        <button
-          class="personaje"
-          data-nombre="Eugene"
-          data-mensaje="Eugene te mostrará la fecha, la hora y cuánto falta para la gran noche."
-          data-destino="seccionEugene"
-        >
-          <img
-            src="assets/eugene.png"
-            alt="Eugene"
-          >
-
-          <div class="personaje-nombre">
-            Eugene
-          </div>
-        </button>
-
-
-        <button
-          class="personaje"
-          data-nombre="Pascal"
-          data-mensaje="Pascal te ayudará a encontrar el lugar de la celebración."
-          data-destino="seccionPascal"
-        >
-          <img
-            src="assets/pascal.png"
-            alt="Pascal"
-          >
-
-          <div class="personaje-nombre">
-            Pascal
-          </div>
-        </button>
-
-
-        <button
-          class="personaje"
-          data-nombre="Maximus"
-          data-mensaje="Maximus se encargará de ayudarte a confirmar tu asistencia."
-          data-destino="seccionMaximus"
-        >
-          <img
-            src="assets/maximus.png"
-            alt="Maximus"
-          >
-
-          <div class="personaje-nombre">
-            Maximus
-          </div>
-        </button>
-
-
-        <button
-          class="personaje"
-          data-nombre="Mis padres"
-          data-mensaje="Mis padres te contarán cuál será el código de vestimenta para esta noche especial."
-          data-destino="seccionPadres"
-        >
-          <img
-            src="assets/padres.png"
-            alt="Padres de Rapunzel"
-          >
-
-          <div class="personaje-nombre">
-            Mis padres
-          </div>
-        </button>
-
-      </div>
-
-      <div class="indicacion">
-        Toca un personaje para descubrir más ✨
-      </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         RAPUNZEL
-    ====================================================== -->
-
-    <section
-      class="seccion"
-      id="seccionRapunzel"
-    >
-
-      <div class="seccion-contenido">
-
-        <img
-          class="seccion-personaje"
-          src="assets/rapunzel.png"
-          alt="Rapunzel"
-        >
-
-        <h2>
-          Hola, soy Ana Cristina
-        </h2>
-
-        <p>
-          Hay momentos en la vida que imaginamos desde pequeñas,
-          momentos llenos de sueños, ilusión y magia.
-        </p>
-
-        <p class="frase-destacada">
-          Hoy quiero compartir contigo uno de los más especiales:
-          la celebración de mis 15 años.
-        </p>
-
-        <p style="margin-top:20px;">
-          Será una noche para crear recuerdos que guardaré
-          para siempre en mi corazón.
-        </p>
-
-      </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         EUGENE - FECHA / HORA / CUENTA REGRESIVA
-    ====================================================== -->
-
-    <section
-      class="seccion"
-      id="seccionEugene"
-    >
-
-      <div class="seccion-contenido">
-
-        <img
-          class="seccion-personaje"
-          src="assets/eugene.png"
-          alt="Eugene"
-        >
-
-        <h2>
-          Nuestra gran aventura comienza...
-        </h2>
-
-        <div class="datos-evento">
-
-          <div class="dato">
-            <span>Fecha</span>
-            <strong>
-              10 de octubre de 2026
-            </strong>
-          </div>
-
-          <div class="dato">
-            <span>Hora</span>
-            <strong>
-              9:00 PM
-            </strong>
-          </div>
-
-        </div>
-
-
-        <div
-          class="cuenta-regresiva"
-          id="cuentaRegresiva"
-        >
-
-          <div class="contador-caja">
-            <span
-              class="contador-numero"
-              id="dias"
-            >
-              00
-            </span>
-
-            <span class="contador-texto">
-              Días
-            </span>
-          </div>
-
-
-          <div class="contador-caja">
-            <span
-              class="contador-numero"
-              id="horas"
-            >
-              00
-            </span>
-
-            <span class="contador-texto">
-              Horas
-            </span>
-          </div>
-
-
-          <div class="contador-caja">
-            <span
-              class="contador-numero"
-              id="minutos"
-            >
-              00
-            </span>
-
-            <span class="contador-texto">
-              Minutos
-            </span>
-          </div>
-
-
-          <div class="contador-caja">
-            <span
-              class="contador-numero"
-              id="segundos"
-            >
-              00
-            </span>
-
-            <span class="contador-texto">
-              Segundos
-            </span>
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         PASCAL - UBICACIÓN
-    ====================================================== -->
-
-    <section
-      class="seccion"
-      id="seccionPascal"
-    >
-
-      <div class="seccion-contenido">
-
-        <img
-          class="seccion-personaje"
-          src="assets/pascal.png"
-          alt="Pascal"
-        >
-
-        <h2>
-          Encuentra el lugar
-        </h2>
-
-        <p>
-          Te esperamos en:
-        </p>
-
-        <p class="frase-destacada">
-          El Altillo<br>
-          AAHH Felipe Castillo Alfaro<br>
-          MZ A LT 5
-        </p>
-
-        <a
-          class="boton"
-          href="https://maps.app.goo.gl/311Yzj5fe6JzgTQw6"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          📍 Ver ubicación
-        </a>
-
-      </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         MAXIMUS - CONFIRMACIÓN
-    ====================================================== -->
-
-    <section
-      class="seccion"
-      id="seccionMaximus"
-    >
-
-      <div class="seccion-contenido">
+            fechaTexto: "10 de Octube de 2026",
 
-        <img
-          class="seccion-personaje"
-          src="assets/maximus.png"
-          alt="Maximus"
-        >
-
-        <h2>
-          Confirma tu asistencia
-        </h2>
+            horaTexto: "9:00 PM",
 
-        <p>
-          Tu presencia hará que esta noche sea todavía más especial.
-        </p>
+            // Escribe aquí el número de WhatsApp.
+            // Incluye el código de país sin el signo +.
+            numeroWhatsApp: "51959138813",
 
-        <p class="frase-destacada">
-          Confírmame que podrás acompañarme 💜
-        </p>
+            // Escribe aquí la dirección real.
+            direccion: "Dirección pendiente de confirmar.",
 
-        <a
-          class="boton"
-          id="botonWhatsApp"
-          href="#"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          💬 Confirmar por WhatsApp
-        </a>
+            // Pega aquí el enlace de Google Maps.
+            mapa: "https://maps.google.com/"
 
-      </div>
+        };
 
-    </section>
 
+        /* =====================================
+           ELEMENTOS
+        ===================================== */
 
-    <!-- =====================================================
-         PADRES - CÓDIGO DE VESTIMENTA
-    ====================================================== -->
+        const portada = document.getElementById("portada");
 
-    <section
-      class="seccion"
-      id="seccionPadres"
-    >
+        const pantallaVideo = document.getElementById("pantalla-video");
 
-      <div class="seccion-contenido">
+        const video = document.getElementById("video-invitacion");
 
-        <img
-          class="seccion-personaje"
-          src="assets/padres.png"
-          alt="Padres"
-        >
+        const paginaPrincipal = document.getElementById("pagina-principal");
 
-        <h2>
-          Código de vestimenta
-        </h2>
+        const botonAbrir = document.getElementById("boton-abrir");
 
-        <p>
-          Para esta noche tan especial queremos verte elegante
-          y listo para disfrutar de una celebración llena de magia.
-        </p>
+        const modal = document.getElementById("modal-personaje");
 
-        <p class="frase-destacada">
-          Vestimenta formal
-        </p>
+        const modalTitulo = document.getElementById("modal-titulo");
 
-      </div>
+        const modalTexto = document.getElementById("modal-texto");
 
-    </section>
+        const cerrarModal = document.getElementById("cerrar-modal");
 
 
-    <button
-      id="volverArriba"
-      aria-label="Volver arriba"
-      title="Volver arriba"
-    >
-      ↑
-    </button>
+        /* =====================================
+           ABRIR INVITACIÓN
+        ===================================== */
 
-  </main>
+        botonAbrir.addEventListener("click", function () {
 
+            portada.style.opacity = "0";
 
-  <!-- =======================================================
-       MODAL TEMPORAL
-  ======================================================== -->
+            setTimeout(function () {
 
-  <div id="overlayModal"></div>
+                portada.classList.add("oculto");
 
-  <div id="modalPersonaje">
+                pantallaVideo.classList.remove("oculto");
 
-    <h3 id="modalTitulo">
-      Personaje
-    </h3>
+                video.currentTime = 0;
 
-    <p id="modalMensaje">
-      Información
-    </p>
+                video.play().catch(function () {
 
-  </div>
+                    console.log("El video necesita iniciar mediante el botón.");
 
+                });
 
-  <script>
-    /* =========================================================
-       CONFIGURACIÓN
-    ========================================================= */
+            }, 1000);
 
-    const CONFIG = {
-      fechaEvento: new Date("2026-10-10T21:00:00-05:00"),
-
-      whatsapp: "51959138813",
-
-      mensajeWhatsapp:
-        "Yo voy a asistir a los 15 años de Ana Cristina Enríquez More. 💜"
-    };
-
-
-    /* =========================================================
-       ELEMENTOS
-    ========================================================= */
-
-    const intro = document.getElementById("intro");
-
-    const abrirInvitacion =
-      document.getElementById("abrirInvitacion");
-
-    const pantallaVideo =
-      document.getElementById("pantallaVideo");
-
-    const video =
-      document.getElementById("videoInvitacion");
-
-    const saltarVideo =
-      document.getElementById("saltarVideo");
-
-    const paginaPrincipal =
-      document.getElementById("paginaPrincipal");
-
-    const contenedorFaroles =
-      document.getElementById("contenedorFaroles");
-
-    const modal =
-      document.getElementById("modalPersonaje");
-
-    const modalTitulo =
-      document.getElementById("modalTitulo");
-
-    const modalMensaje =
-      document.getElementById("modalMensaje");
-
-    const overlayModal =
-      document.getElementById("overlayModal");
-
-    const volverArriba =
-      document.getElementById("volverArriba");
-
-
-    /* =========================================================
-       ABRIR INVITACIÓN
-    ========================================================= */
-
-    abrirInvitacion.addEventListener("click", async () => {
-
-      intro.classList.add("oculto");
-
-      setTimeout(() => {
-
-        intro.style.display = "none";
-
-        pantallaVideo.classList.add("activo");
-
-        video.currentTime = 0;
-
-        video.play().catch(() => {
-          /* Si el navegador bloquea el autoplay,
-             el usuario puede tocar el video */
         });
 
-      }, 600);
 
-    });
+        /* =====================================
+           CUANDO TERMINA EL VIDEO
+        ===================================== */
 
+        video.addEventListener("ended", function () {
 
-    /* =========================================================
-       TERMINAR VIDEO
-    ========================================================= */
+            pantallaVideo.classList.add("oculto");
 
-    function mostrarPaginaPrincipal() {
+            paginaPrincipal.classList.remove("oculto");
 
-      video.pause();
+            iniciarFaroles();
 
-      pantallaVideo.classList.remove("activo");
+            window.scrollTo({
+                top: 0,
+                behavior: "instant"
+            });
 
-      paginaPrincipal.classList.add("activo");
-
-      document.body.style.overflowY = "auto";
-
-      window.scrollTo({
-        top: 0,
-        behavior: "instant"
-      });
-
-      iniciarFaroles();
-    }
+        });
 
 
-    video.addEventListener(
-      "ended",
-      mostrarPaginaPrincipal
-    );
+        /* =====================================
+           INFORMACIÓN DE LOS PERSONAJES
+        ===================================== */
+
+        const personajes = {
+
+            rapunzel: {
+
+                titulo: "Sobre la quinceañera",
+
+                texto: "Conoce a Ana Cristina, la quinceañera. Aquí encontrarás su presentación y un mensaje especial."
+
+            },
+
+            eugene: {
+
+                titulo: "Día y hora del evento",
+
+                texto: "Aquí podrás consultar el día, la hora y la cuenta regresiva para los 15 años de Ana Cristina."
+
+            },
+
+            pascal: {
+
+                titulo: "Ubicación del evento",
+
+                texto: "Aquí podrás encontrar la dirección del evento y acceder a la ubicación en Google Maps."
+
+            },
+
+            maximus: {
+
+                titulo: "Confirmar asistencia",
+
+                texto: "Aquí podrás confirmar tu asistencia a los 15 años de Ana Cristina mediante WhatsApp."
+
+            },
+
+            padres: {
+
+                titulo: "Código de vestimenta",
+
+                texto: "Aquí podrás consultar el código de vestimenta para damas y caballeros."
+
+            }
+
+        };
 
 
-    saltarVideo.addEventListener(
-      "click",
-      mostrarPaginaPrincipal
-    );
+        /* =====================================
+           ABRIR MODAL Y DESPLAZAR
+        ===================================== */
+
+        let temporizadorModal;
+
+        document.querySelectorAll(".personaje").forEach(function (boton) {
+
+            boton.addEventListener("click", function () {
+
+                const personaje = boton.dataset.personaje;
+
+                const informacion = personajes[personaje];
+
+                if (!informacion) return;
+
+                modalTitulo.textContent = informacion.titulo;
+
+                modalTexto.textContent = informacion.texto;
+
+                modal.classList.add("visible");
+
+                modal.setAttribute("aria-hidden", "false");
+
+                clearTimeout(temporizadorModal);
+
+                temporizadorModal = setTimeout(function () {
+
+                    cerrarModalFuncion();
+
+                    irASeccion(personaje);
+
+                }, 2000);
+
+            });
+
+        });
 
 
-    /* =========================================================
-       MODAL + NAVEGACIÓN DE PERSONAJES
-    ========================================================= */
+        function cerrarModalFuncion() {
 
-    let navegacionActiva = false;
+            modal.classList.remove("visible");
 
-    let temporizadorModal = null;
+            modal.setAttribute("aria-hidden", "true");
 
-    document
-      .querySelectorAll(".personaje")
-      .forEach(personaje => {
+        }
 
-        personaje.addEventListener(
-          "click",
-          () => {
 
-            const nombre =
-              personaje.dataset.nombre;
-
-            const mensaje =
-              personaje.dataset.mensaje;
-
-            const destino =
-              personaje.dataset.destino;
-
-            modalTitulo.textContent = nombre;
-            modalMensaje.textContent = mensaje;
-
-            modal.classList.add("visible");
-            overlayModal.classList.add("visible");
+        cerrarModal.addEventListener("click", function () {
 
             clearTimeout(temporizadorModal);
 
-            navegacionActiva = true;
+            cerrarModalFuncion();
 
-            detenerRetornoAutomatico();
-
-            temporizadorModal =
-              setTimeout(() => {
-
-                modal.classList.remove("visible");
-
-                overlayModal.classList.remove("visible");
-
-                const objetivo =
-                  document.getElementById(destino);
-
-                objetivo.scrollIntoView({
-                  behavior: "smooth",
-                  block: "start"
-                });
-
-
-                /*
-                  Dejamos tiempo suficiente para que termine
-                  aproximadamente el scroll suave y recién
-                  después iniciamos el control de inactividad.
-                */
-
-                setTimeout(() => {
-
-                  navegacionActiva = false;
-
-                  reiniciarRetornoAutomatico();
-
-                }, 1100);
-
-              }, 2000);
-
-          });
-
-      });
-
-
-    /* =========================================================
-       RETORNO AUTOMÁTICO ARRIBA DESPUÉS DE 5 SEGUNDOS
-    ========================================================= */
-
-    let temporizadorRetorno = null;
-
-    let retornoAutomaticoActivo = true;
-
-
-    function detenerRetornoAutomatico() {
-
-      clearTimeout(temporizadorRetorno);
-
-      temporizadorRetorno = null;
-
-    }
-
-
-    function reiniciarRetornoAutomatico() {
-
-      detenerRetornoAutomatico();
-
-      if (!retornoAutomaticoActivo) {
-        return;
-      }
-
-      if (navegacionActiva) {
-        return;
-      }
-
-      /*
-        Solo regresar arriba si realmente estamos
-        lejos de la zona principal.
-      */
-
-      if (window.scrollY < window.innerHeight * 0.55) {
-        return;
-      }
-
-      temporizadorRetorno =
-        setTimeout(() => {
-
-          if (navegacionActiva) {
-            return;
-          }
-
-          window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-          });
-
-        }, 5000);
-    }
-
-
-    /*
-      Cada acción del usuario reinicia los 5 segundos.
-    */
-
-    [
-      "scroll",
-      "touchstart",
-      "touchmove",
-      "mousedown",
-      "mousemove",
-      "keydown",
-      "wheel"
-    ].forEach(evento => {
-
-      window.addEventListener(
-        evento,
-        () => {
-
-          if (navegacionActiva) {
-            return;
-          }
-
-          reiniciarRetornoAutomatico();
-
-        },
-        {
-          passive: true
-        }
-      );
-
-    });
-
-
-    /* =========================================================
-       BOTÓN VOLVER ARRIBA
-    ========================================================= */
-
-    window.addEventListener(
-      "scroll",
-      () => {
-
-        if (window.scrollY > 450) {
-          volverArriba.classList.add("visible");
-        } else {
-          volverArriba.classList.remove("visible");
-        }
-
-      },
-      {
-        passive: true
-      }
-    );
-
-
-    volverArriba.addEventListener(
-      "click",
-      () => {
-
-        detenerRetornoAutomatico();
-
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth"
         });
 
-      }
-    );
 
+        modal.addEventListener("click", function (evento) {
 
-    /* =========================================================
-       WHATSAPP
-    ========================================================= */
+            if (evento.target === modal) {
 
-    const botonWhatsApp =
-      document.getElementById("botonWhatsApp");
+                clearTimeout(temporizadorModal);
 
-    const mensajeCodificado =
-      encodeURIComponent(CONFIG.mensajeWhatsapp);
+                cerrarModalFuncion();
 
-    botonWhatsApp.href =
-      `https://wa.me/${CONFIG.whatsapp}?text=${mensajeCodificado}`;
+            }
 
+        });
 
-    /* =========================================================
-       CUENTA REGRESIVA
-    ========================================================= */
 
-    const dias =
-      document.getElementById("dias");
+        /* =====================================
+           IR A LA SECCIÓN CORRESPONDIENTE
+        ===================================== */
 
-    const horas =
-      document.getElementById("horas");
+        function irASeccion(personaje) {
 
-    const minutos =
-      document.getElementById("minutos");
+            const secciones = {
 
-    const segundos =
-      document.getElementById("segundos");
+                rapunzel: "seccion-rapunzel",
 
-    const cuentaRegresiva =
-      document.getElementById("cuentaRegresiva");
+                eugene: "seccion-eugene",
 
+                pascal: "seccion-pascal",
 
-    function actualizarCuentaRegresiva() {
+                maximus: "seccion-maximus",
 
-      const ahora = new Date();
+                padres: "seccion-padres"
 
-      const diferencia =
-        CONFIG.fechaEvento.getTime()
-        -
-        ahora.getTime();
+            };
 
+            const id = secciones[personaje];
 
-      if (diferencia <= 0) {
+            if (!id) return;
 
-        cuentaRegresiva.innerHTML = `
-          <div class="evento-finalizado">
-            ✨ El gran día ha llegado ✨
-          </div>
-        `;
+            const seccion = document.getElementById(id);
 
-        return;
-      }
+            seccion.scrollIntoView({
 
+                behavior: "smooth",
 
-      const totalSegundos =
-        Math.floor(diferencia / 1000);
+                block: "start"
 
+            });
 
-      const diasRestantes =
-        Math.floor(
-          totalSegundos / 86400
-        );
-
-
-      const horasRestantes =
-        Math.floor(
-          (totalSegundos % 86400)
-          /
-          3600
-        );
-
-
-      const minutosRestantes =
-        Math.floor(
-          (totalSegundos % 3600)
-          /
-          60
-        );
-
-
-      const segundosRestantes =
-        totalSegundos % 60;
-
-
-      dias.textContent =
-        String(diasRestantes)
-          .padStart(2, "0");
-
-
-      horas.textContent =
-        String(horasRestantes)
-          .padStart(2, "0");
-
-
-      minutos.textContent =
-        String(minutosRestantes)
-          .padStart(2, "0");
-
-
-      segundos.textContent =
-        String(segundosRestantes)
-          .padStart(2, "0");
-
-    }
-
-
-    actualizarCuentaRegresiva();
-
-    setInterval(
-      actualizarCuentaRegresiva,
-      1000
-    );
-
-
-    /* =========================================================
-       FAROLES
-    ========================================================= */
-
-    let farolesIniciados = false;
-
-    let intervaloFaroles = null;
-
-
-    function crearFarol() {
-
-      /*
-        Limitar la cantidad de faroles existentes
-        para evitar cargar demasiado el navegador.
-      */
-
-      const farolesActuales =
-        document.querySelectorAll(".farol");
-
-      if (farolesActuales.length > 25) {
-        return;
-      }
-
-
-      const farol =
-        document.createElement("img");
-
-      farol.src =
-        "assets/farol.png";
-
-      farol.alt =
-        "Farol flotante";
-
-      farol.classList.add("farol");
-
-
-      const posicionHorizontal =
-        Math.random() * 94;
-
-
-      const tamano =
-        45
-        +
-        Math.random() * 65;
-
-
-      const duracion =
-        12
-        +
-        Math.random() * 10;
-
-
-      const opacidad =
-        0.55
-        +
-        Math.random() * 0.4;
-
-
-      farol.style.left =
-        `${posicionHorizontal}%`;
-
-
-      farol.style.setProperty(
-        "--tamano",
-        `${tamano}px`
-      );
-
-
-      farol.style.setProperty(
-        "--duracion",
-        `${duracion}s`
-      );
-
-
-      farol.style.setProperty(
-        "--opacidad",
-        opacidad
-      );
-
-
-      /*
-        Al tocar el farol, sube rápidamente
-        y desaparece.
-      */
-
-      farol.addEventListener(
-        "click",
-        event => {
-
-          event.stopPropagation();
-
-          farol.classList.add("disparado");
-
-          setTimeout(() => {
-
-            farol.remove();
-
-          }, 1200);
+            iniciarRegresoAutomatico();
 
         }
-      );
 
 
-      /*
-        Eliminar el farol después de completar
-        su recorrido normal.
-      */
+        /* =====================================
+           REGRESAR AL INICIO DESPUÉS DE 5 SEGUNDOS
+        ===================================== */
 
-      setTimeout(() => {
+        let temporizadorRegreso;
 
-        if (farol.isConnected) {
-          farol.remove();
+        let usuarioSeEstaMoviendo = false;
+
+
+        function iniciarRegresoAutomatico() {
+
+            clearTimeout(temporizadorRegreso);
+
+            temporizadorRegreso = setTimeout(function () {
+
+                if (!usuarioSeEstaMoviendo) {
+
+                    window.scrollTo({
+
+                        top: 0,
+
+                        behavior: "smooth"
+
+                    });
+
+                }
+
+            }, 5000);
+
         }
 
-      }, (duracion + 2) * 1000);
+
+        window.addEventListener("scroll", function () {
+
+            usuarioSeEstaMoviendo = true;
+
+            clearTimeout(temporizadorRegreso);
+
+            temporizadorRegreso = setTimeout(function () {
+
+                usuarioSeEstaMoviendo = false;
+
+                iniciarRegresoAutomatico();
+
+            }, 200);
+
+        });
 
 
-      contenedorFaroles.appendChild(farol);
+        /* =====================================
+           CONFIGURAR DATOS
+        ===================================== */
 
-    }
+        document.getElementById("fecha-evento").textContent =
+            CONFIG.fechaTexto;
 
+        document.getElementById("hora-evento").textContent =
+            CONFIG.horaTexto;
 
-    function iniciarFaroles() {
+        document.getElementById("direccion-evento").textContent =
+            CONFIG.direccion;
 
-      if (farolesIniciados) {
-        return;
-      }
-
-      farolesIniciados = true;
-
-
-      /*
-        Crear algunos de inmediato para que
-        la pantalla no aparezca vacía.
-      */
-
-      crearFarol();
-
-      setTimeout(
-        crearFarol,
-        400
-      );
-
-      setTimeout(
-        crearFarol,
-        850
-      );
+        document.getElementById("boton-mapa").href =
+            CONFIG.mapa;
 
 
-      /*
-        Luego aparece uno cada 1.5 segundos.
-      */
+        const mensajeWhatsApp =
+            "Hola, confirmaré mi asistencia a los 15 años de Ana Cristina Enríquez More.";
 
-      intervaloFaroles =
-        setInterval(
-          crearFarol,
-          1500
-        );
-
-    }
+        document.getElementById("boton-whatsapp").href =
+            "https://wa.me/" +
+            CONFIG.numeroWhatsApp +
+            "?text=" +
+            encodeURIComponent(mensajeWhatsApp);
 
 
-    /* =========================================================
-       EVITAR ARRASTRAR IMÁGENES
-    ========================================================= */
+        /* =====================================
+           CUENTA REGRESIVA
+        ===================================== */
 
-    document
-      .querySelectorAll("img")
-      .forEach(imagen => {
+        const fechaEvento = new Date(CONFIG.fechaEvento).getTime();
 
-        imagen.setAttribute(
-          "draggable",
-          "false"
-        );
 
-      });
+        function actualizarContador() {
 
-  </script>
+            const ahora = new Date().getTime();
+
+            const diferencia = fechaEvento - ahora;
+
+
+            if (diferencia <= 0) {
+
+                document.getElementById("dias").textContent = "00";
+
+                document.getElementById("horas").textContent = "00";
+
+                document.getElementById("minutos").textContent = "00";
+
+                document.getElementById("segundos").textContent = "00";
+
+                return;
+
+            }
+
+
+            const dias = Math.floor(
+                diferencia / (1000 * 60 * 60 * 24)
+            );
+
+            const horas = Math.floor(
+                (diferencia / (1000 * 60 * 60)) % 24
+            );
+
+            const minutos = Math.floor(
+                (diferencia / (1000 * 60)) % 60
+            );
+
+            const segundos = Math.floor(
+                (diferencia / 1000) % 60
+            );
+
+
+            document.getElementById("dias").textContent =
+                String(dias).padStart(2, "0");
+
+            document.getElementById("horas").textContent =
+                String(horas).padStart(2, "0");
+
+            document.getElementById("minutos").textContent =
+                String(minutos).padStart(2, "0");
+
+            document.getElementById("segundos").textContent =
+                String(segundos).padStart(2, "0");
+
+        }
+
+
+        actualizarContador();
+
+        setInterval(actualizarContador, 1000);
+
+
+        /* =====================================
+           FAROLES INTERACTIVOS
+        ===================================== */
+
+        const contenedorFaroles =
+            document.getElementById("contenedor-faroles");
+
+
+        function crearFarol() {
+
+            const farol = document.createElement("div");
+
+            farol.className = "farol";
+
+
+            const imagen = document.createElement("img");
+
+            imagen.src = "assets/farol.png";
+
+            imagen.alt = "Farol flotante";
+
+
+            farol.appendChild(imagen);
+
+
+            const posicionX = Math.random() * 95;
+
+            const posicionY = 100 + Math.random() * 20;
+
+
+            farol.style.left = posicionX + "%";
+
+            farol.style.top = posicionY + "%";
+
+
+            const duracion = 6 + Math.random() * 5;
+
+            const retraso = Math.random() * 2;
+
+
+            farol.style.animationDuration =
+                duracion + "s";
+
+            farol.style.animationDelay =
+                retraso + "s";
+
+
+            farol.addEventListener("click", function () {
+
+                farol.classList.add("liberado");
+
+                setTimeout(function () {
+
+                    farol.remove();
+
+                }, 1200);
+
+            });
+
+
+            contenedorFaroles.appendChild(farol);
+
+        }
+
+
+        function iniciarFaroles() {
+
+            for (let i = 0; i < 12; i++) {
+
+                setTimeout(function () {
+
+                    crearFarol();
+
+                }, i * 1500);
+
+            }
+
+        }
+
+
+    </script>
 
 </body>
+
 </html>
