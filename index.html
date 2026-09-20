@@ -203,7 +203,7 @@
             position: fixed;
             inset: 0;
 
-            z-index: 1;
+            z-index: 10;
 
             pointer-events: none;
 
@@ -214,7 +214,7 @@
             position: absolute;
 
             width: 48px;
-
+            height: 70px;
             pointer-events: auto;
             cursor: pointer;
 
@@ -229,7 +229,8 @@
             width: 100%;
             display: block;
 
-            filter: drop-shadow(0 0 12px rgba(255, 180, 75, 0.5));
+            filter: drop-shadow(0 0 16px rgba(255, 190, 90, 0.85));
+            z-index: 11;
         }
 
         .farol:hover {
@@ -1749,17 +1750,23 @@
         }
 
 
+        let intervaloFaroles;
+
         function iniciarFaroles() {
 
-            for (let i = 0; i < 12; i++) {
-
+            // Crear algunos inmediatamente para que sean visibles.
+            for (let i = 0; i < 6; i++) {
                 setTimeout(function () {
-
                     crearFarol();
-
-                }, i * 1500);
-
+                }, i * 700);
             }
+
+            // Después siguen apareciendo continuamente.
+            clearInterval(intervaloFaroles);
+
+            intervaloFaroles = setInterval(function () {
+                crearFarol();
+            }, 1800);
 
         }
 
