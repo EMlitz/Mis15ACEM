@@ -552,54 +552,7 @@
 
             opacity: 0.9;
         }
-
-        /* =====================================
-           CONTADOR
-        ===================================== */
-
-        .contador {
-            display: flex;
-
-            justify-content: center;
-
-            gap: 12px;
-
-            flex-wrap: wrap;
-
-            margin-top: 30px;
-        }
-
-        .contador-caja {
-            min-width: 75px;
-
-            padding: 15px 10px;
-
-            background: rgba(111, 62, 145, 0.35);
-
-            border: 1px solid rgba(235, 190, 255, 0.35);
-
-            border-radius: 12px;
-        }
-
-        .contador-caja strong {
-            display: block;
-
-            font-family: 'Cinzel', serif;
-
-            font-size: 26px;
-
-            color: #f6d99d;
-        }
-
-        .contador-caja small {
-            color: #e8d8f5;
-
-            font-size: 11px;
-
-            text-transform: uppercase;
-        }
-
-        /* =====================================
+/* =====================================
            BOTONES
         ===================================== */
 
@@ -804,6 +757,52 @@
         0 0 4px #d9ad5b,
         0 0 8px rgba(217, 173, 91, 0.75);
 }
+
+/* =====================================
+           CONTADOR
+        ===================================== */
+
+        .contador {
+            display: flex;
+
+            justify-content: center;
+
+            gap: 12px;
+
+            flex-wrap: wrap;
+
+            margin-top: 30px;
+        }
+
+        .contador-caja {
+            min-width: 75px;
+
+            padding: 15px 10px;
+
+            background: rgba(111, 62, 145, 0.35);
+
+            border: 1px solid rgba(235, 190, 255, 0.35);
+
+            border-radius: 12px;
+        }
+
+        .contador-caja strong {
+            display: block;
+
+            font-family: 'Cinzel', serif;
+
+            font-size: 26px;
+
+            color: #f6d99d;
+        }
+
+        .contador-caja small {
+            color: #e8d8f5;
+
+            font-size: 11px;
+
+            text-transform: uppercase;
+        }
 </style>
 
 </head>
@@ -1229,16 +1228,7 @@
     >
 
         <div class="burbuja-modal">
-
-            <button
-                class="cerrar-modal"
-                id="cerrar-modal"
-                aria-label="Cerrar"
-            >
-                ×
-            </button>
-
-            <h2 id="modal-titulo">
+<h2 id="modal-titulo">
                 Información
             </h2>
 
@@ -1303,7 +1293,6 @@
 
         const modalTexto = document.getElementById("modal-texto");
 
-        const cerrarModal = document.getElementById("cerrar-modal");
 
 
         /* =====================================
@@ -1417,7 +1406,7 @@
 
                 titulo: "Día y hora del evento",
 
-                texto: "Aquí podrás consultar el día, la hora y la cuenta regresiva para los 15 años de Ana Cristina."
+                texto: "Aquí podrás consultar el día y la hora de los 15 años de Ana Cristina."
 
             },
 
@@ -1449,20 +1438,24 @@
 
 
         /* =====================================
-           ABRIR MODAL Y DESPLAZAR
+           ABRIR MODAL Y CERRAR AL TOCAR LA PANTALLA
         ===================================== */
 
-        let temporizadorModal;
+        let personajeModalActual = null;
 
         document.querySelectorAll(".personaje").forEach(function (boton) {
 
-            boton.addEventListener("click", function () {
+            boton.addEventListener("click", function (evento) {
+
+                evento.stopPropagation();
 
                 const personaje = boton.dataset.personaje;
 
                 const informacion = personajes[personaje];
 
                 if (!informacion) return;
+
+                personajeModalActual = personaje;
 
                 modalTitulo.textContent = informacion.titulo;
 
@@ -1471,16 +1464,6 @@
                 modal.classList.add("visible");
 
                 modal.setAttribute("aria-hidden", "false");
-
-                clearTimeout(temporizadorModal);
-
-                temporizadorModal = setTimeout(function () {
-
-                    cerrarModalFuncion();
-
-                    irASeccion(personaje);
-
-                }, 2000);
 
             });
 
@@ -1496,22 +1479,22 @@
         }
 
 
-        cerrarModal.addEventListener("click", function () {
+        /*
+         * Al tocar/clicar cualquier parte de la pantalla
+         * mientras el modal está abierto, se cierra y
+         * se lleva al visitante directamente a la sección.
+         */
+        modal.addEventListener("click", function () {
 
-            clearTimeout(temporizadorModal);
+            const personaje = personajeModalActual;
 
             cerrarModalFuncion();
 
-        });
+            if (personaje) {
 
+                irASeccion(personaje);
 
-        modal.addEventListener("click", function (evento) {
-
-            if (evento.target === modal) {
-
-                clearTimeout(temporizadorModal);
-
-                cerrarModalFuncion();
+                personajeModalActual = null;
 
             }
 
@@ -1552,58 +1535,7 @@
 
             });
 
-            iniciarRegresoAutomatico();
-
         }
-
-
-        /* =====================================
-           REGRESAR AL INICIO DESPUÉS DE 5 SEGUNDOS
-        ===================================== */
-
-        let temporizadorRegreso;
-
-        let usuarioSeEstaMoviendo = false;
-
-
-        function iniciarRegresoAutomatico() {
-
-            clearTimeout(temporizadorRegreso);
-
-            temporizadorRegreso = setTimeout(function () {
-
-                if (!usuarioSeEstaMoviendo) {
-
-                    window.scrollTo({
-
-                        top: 0,
-
-                        behavior: "smooth"
-
-                    });
-
-                }
-
-            }, 5000);
-
-        }
-
-
-        window.addEventListener("scroll", function () {
-
-            usuarioSeEstaMoviendo = true;
-
-            clearTimeout(temporizadorRegreso);
-
-            temporizadorRegreso = setTimeout(function () {
-
-                usuarioSeEstaMoviendo = false;
-
-                iniciarRegresoAutomatico();
-
-            }, 200);
-
-        });
 
 
         /* =====================================
