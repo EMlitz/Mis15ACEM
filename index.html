@@ -70,6 +70,7 @@
         .pergamino-contenedor {
             position: relative;
             width: min(90vw, 650px);
+            min-height: 55vh;
 
             display: flex;
             justify-content: center;
@@ -178,16 +179,6 @@
             position: fixed;
             inset: 0;
 
-            background-image:
-                linear-gradient(
-                    rgba(8, 6, 23, 0.12),
-                    rgba(8, 6, 23, 0.12)
-                ),
-                url("assets/fondo-faroles.jfif");
-
-            background-size: cover;
-            background-position: center;
-
             z-index: 0;
         }
 
@@ -222,7 +213,7 @@
         .farol {
             position: absolute;
 
-            width: 55px;
+            width: 48px;
 
             pointer-events: auto;
             cursor: pointer;
@@ -719,9 +710,84 @@
             }
 
             .farol {
-                width: 42px;
+                width: 38px;
             }
 
+        }
+
+
+        /* =====================================
+           TRANSICIÓN MÁGICA DESPUÉS DEL VIDEO
+        ===================================== */
+
+        #transicion-magica {
+            position: fixed;
+            inset: 0;
+            z-index: 3000;
+            pointer-events: none;
+            overflow: hidden;
+            opacity: 0;
+            visibility: hidden;
+            background:
+                radial-gradient(circle at center,
+                    rgba(255, 226, 150, 0.95) 0%,
+                    rgba(255, 210, 110, 0.45) 12%,
+                    rgba(124, 74, 170, 0.18) 35%,
+                    rgba(8, 6, 23, 0) 70%);
+        }
+
+        #transicion-magica.activa {
+            visibility: visible;
+            animation: revelarMagia 2.4s ease forwards;
+        }
+
+        .particulas-magicas {
+            position: absolute;
+            inset: 0;
+        }
+
+        .particula-magica {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #f7d99b;
+            box-shadow: 0 0 10px rgba(255, 224, 145, 0.95);
+            animation: particulaMagica 2s ease-out forwards;
+        }
+
+        @keyframes revelarMagia {
+            0% {
+                opacity: 0;
+                transform: scale(0.7);
+            }
+            25% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            65% {
+                opacity: 1;
+                transform: scale(1.08);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(1.25);
+                visibility: hidden;
+            }
+        }
+
+        @keyframes particulaMagica {
+            from {
+                opacity: 0;
+                transform: translate(0, 20px) scale(0.4);
+            }
+            25% {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+                transform: translate(var(--dx), var(--dy)) scale(0);
+            }
         }
 
     </style>
@@ -730,6 +796,11 @@
 
 <body>
 
+
+    <div id="transicion-magica" aria-hidden="true">
+        <div class="particulas-magicas" id="particulas-magicas"></div>
+    </div>
+
     <!-- =====================================
          PORTADA DEL PERGAMINO
     ===================================== -->
@@ -737,12 +808,6 @@
     <section id="portada">
 
         <div class="pergamino-contenedor">
-
-            <img
-                class="pergamino"
-                src="assets/pergamino.jfif"
-                alt="Pergamino de invitación"
-            >
 
             <div class="contenido-pergamino">
 
@@ -757,12 +822,10 @@
                     id="boton-abrir"
                     aria-label="Abrir invitación"
                 >
-
                     <img
                         src="assets/sol-morado.png"
                         alt="Abrir invitación"
                     >
-
                 </button>
 
             </div>
@@ -1188,13 +1251,13 @@
             // Cambia esta fecha por la fecha real.
             fechaEvento: "2026-10-10T21:00:00",
 
-            fechaTexto: "10 de Octube de 2026",
+            fechaTexto: "10 de Octubre de 2026",
 
             horaTexto: "9:00 PM",
 
             // Escribe aquí el número de WhatsApp.
             // Incluye el código de país sin el signo +.
-            numeroWhatsApp: "51959138813",
+            numeroWhatsApp: "51913689592",
 
             // Escribe aquí la dirección real.
             direccion: "El Altillo AAHH Felipe Castillo Alfaro MZ A LT 5.",
@@ -1263,16 +1326,62 @@
 
             pantallaVideo.classList.add("oculto");
 
-            paginaPrincipal.classList.remove("oculto");
+            crearParticulasMagicas();
 
-            iniciarFaroles();
+            const transicion = document.getElementById("transicion-magica");
+            transicion.classList.add("activa");
 
-            window.scrollTo({
-                top: 0,
-                behavior: "instant"
-            });
+            setTimeout(function () {
+
+                paginaPrincipal.classList.remove("oculto");
+
+                iniciarFaroles();
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "instant"
+                });
+
+            }, 650);
+
+            setTimeout(function () {
+                transicion.classList.remove("activa");
+            }, 2500);
 
         });
+
+        function crearParticulasMagicas() {
+
+            const contenedor = document.getElementById("particulas-magicas");
+
+            contenedor.innerHTML = "";
+
+            for (let i = 0; i < 55; i++) {
+
+                const particula = document.createElement("span");
+
+                particula.className = "particula-magica";
+
+                particula.style.left = (35 + Math.random() * 30) + "%";
+                particula.style.top = (35 + Math.random() * 30) + "%";
+
+                particula.style.setProperty(
+                    "--dx",
+                    ((Math.random() - 0.5) * 70) + "vw"
+                );
+
+                particula.style.setProperty(
+                    "--dy",
+                    ((Math.random() - 0.5) * 70) + "vh"
+                );
+
+                particula.style.animationDelay =
+                    (Math.random() * 0.45) + "s";
+
+                contenedor.appendChild(particula);
+            }
+
+        }
 
 
         /* =====================================
